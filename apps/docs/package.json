@@ -1,5 +1,5 @@
 {
-  "name": "@acme/docs",
+  "name": "docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,11 +15,11 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "tsconfig": "*",
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
     "eslint-config-custom": "*",
-    "typescript": "^4.5.4"
+    "tsconfig": "*",
+    "typescript": "^5.2.2"
   }
 }
