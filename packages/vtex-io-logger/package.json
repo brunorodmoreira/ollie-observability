@@ -17,6 +17,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@vtex/api": "^6.46.0",
     "esbuild": "^0.19.5",
     "eslint": "^8.52.0",
     "eslint-config-custom": "*",
