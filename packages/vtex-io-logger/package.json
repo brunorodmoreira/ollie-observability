@@ -10,7 +10,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "build": "esbuild --bundle=src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --packages=external --platform=node",
+    "build:esm": "esbuild --bundle=src/index.ts --outfile=dist/index.esm.js --format=esm --minify --sourcemap --packages=external --platform=node",
     "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
     "lint": "eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"

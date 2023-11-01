@@ -4,6 +4,7 @@
   "compilerOptions": {
     "composite": false,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
