@@ -26,15 +26,17 @@ describe("instrumentRoutes", () => {
   });
 
   it("should add fullLoggingMiddleware to the correct position in the handlers array", () => {
-    function enhancedLoggerInjectionMiddleware() {}
+    function injectionLoggerMiddleware() {}
+
+    injectionLoggerMiddleware.__loggerInjectionMiddleware = true;
 
     const routes: ServiceConfig["routes"] = {
-      test: [enhancedLoggerInjectionMiddleware],
+      test: [injectionLoggerMiddleware],
     };
 
     const result = instrumentRoutes(routes);
 
     const handlers = result?.test as any[];
-    expect(handlers[1]).toBe(enhancedLoggerInjectionMiddleware);
+    expect(handlers[1]).toBe(injectionLoggerMiddleware);
   });
 });

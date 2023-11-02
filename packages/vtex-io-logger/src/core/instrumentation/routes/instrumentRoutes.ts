@@ -1,4 +1,4 @@
-import type { ServiceConfig } from "@vtex/api";
+import type { RouteHandler, ServiceConfig } from "@vtex/api";
 import { addItemToPosition } from "../../../utils/arrays";
 import { fullLoggingMiddlewareFactory } from "./fullLoggingMiddlewareFactory";
 
@@ -17,7 +17,8 @@ export function instrumentRoutes(routes: ServiceConfig["routes"]) {
     }
 
     const indexOfInjectedLogger = handlers.findIndex(
-      (handler) => handler.name === "enhancedLoggerInjectionMiddleware"
+      (handler: RouteHandler & { __loggerInjectionMiddleware?: boolean }) =>
+        handler.__loggerInjectionMiddleware
     );
 
     if (indexOfInjectedLogger === -1) {
