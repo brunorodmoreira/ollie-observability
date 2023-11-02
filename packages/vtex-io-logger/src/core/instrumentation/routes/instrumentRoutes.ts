@@ -38,7 +38,7 @@ export function instrumentRoutes(routes: ServiceConfig["routes"]) {
     enhancedRoutes[name] = addItemToPosition(
       handlers,
       fullLoggingMiddleware,
-      indexOfInjectedLogger
+      indexOfInjectedLogger + 1
     );
   }
 

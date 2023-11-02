@@ -37,6 +37,7 @@ describe("instrumentRoutes", () => {
     const result = instrumentRoutes(routes);
 
     const handlers = result?.test as any[];
-    expect(handlers[1]).toBe(injectionLoggerMiddleware);
+
+    expect(handlers[1].name).toEqual("fullLoggingMiddleware");
   });
 });
