@@ -1,6 +1,6 @@
 import { ServiceContext } from "@vtex/api";
-import { fullLoggingMiddlewareFactory } from "../../../src/core/instrumentation/fullLoggingMiddlewareFactory";
-import { ParamsContextWithEnhancedLogger } from "../../../src/types/service";
+import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/fullLoggingMiddlewareFactory";
+import { ParamsContextWithEnhancedLogger } from "../../../../src/types/service";
 
 describe("fullLoggingMiddlewareFactory", () => {
   let ctx: ServiceContext<any, any, ParamsContextWithEnhancedLogger>;

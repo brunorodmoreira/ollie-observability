@@ -1,6 +1,6 @@
 import { ServiceContext } from "@vtex/api";
-import { ParamsContextWithEnhancedLogger } from "../../types/service";
-import { getBindings } from "./getBinding";
+import { ParamsContextWithEnhancedLogger } from "../../../types/service";
+import { getBindingsForRoute } from "./getBindingForRoute";
 
 export function fullLoggingMiddlewareFactory() {
   return async function fullLoggingMiddleware(
@@ -9,7 +9,7 @@ export function fullLoggingMiddlewareFactory() {
   ) {
     const { enhancedLogger } = ctx;
 
-    const bindings = getBindings(ctx);
+    const bindings = getBindingsForRoute(ctx);
 
     const startTime = process.hrtime.bigint();
 

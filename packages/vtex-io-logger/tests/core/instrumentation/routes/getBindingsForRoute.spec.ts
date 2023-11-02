@@ -1,6 +1,6 @@
-import { getBindings } from "../../../src/core/instrumentation/getBinding";
+import { getBindingsForRoute } from "../../../../src/core/instrumentation/routes/getBindingForRoute";
 
-describe("getBindings", () => {
+describe("getBindingsForRoute", () => {
   const expected = {
     url: "testUrl",
     method: "GET",
@@ -29,7 +29,7 @@ describe("getBindings", () => {
     },
   };
   it("should return correct object", () => {
-    const result = getBindings(mockContext);
+    const result = getBindingsForRoute(mockContext);
 
     expect(result).toEqual(expected);
   });
@@ -43,7 +43,7 @@ describe("getBindings", () => {
       },
     };
 
-    const result = getBindings(ctx);
+    const result = getBindingsForRoute(ctx);
 
     expect(result).toEqual({
       ...expected,

@@ -1,6 +1,6 @@
 import { ServiceContext } from "@vtex/api";
 
-export function getBindings(ctx: ServiceContext) {
+export function getBindingsForRoute(ctx: ServiceContext) {
   const {
     url,
     method,
