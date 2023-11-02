@@ -1,0 +1,6 @@
+{
+  "buildCommand": "turbo run build --filter=./packages/vtex-io-logger",
+  "packages": ["packages/vtex-io-logger"],
+  "sandboxes": ["vanilla"],
+  "node": "16"
+}
