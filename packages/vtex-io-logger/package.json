@@ -12,15 +12,18 @@
   "scripts": {
     "build": "esbuild --bundle=src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --packages=external --platform=node",
     "build:esm": "esbuild --bundle=src/index.ts --outfile=dist/index.esm.js --format=esm --minify --sourcemap --packages=external --platform=node",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "test": "jest",
     "lint": "eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.7",
     "@vtex/api": "^6.46.0",
     "esbuild": "^0.19.5",
     "eslint": "^8.52.0",
     "eslint-config-custom": "*",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
     "tsconfig": "*",
     "typescript": "^5.2.2"
   },
