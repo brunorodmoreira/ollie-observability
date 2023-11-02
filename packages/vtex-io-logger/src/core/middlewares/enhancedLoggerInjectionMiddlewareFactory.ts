@@ -8,10 +8,12 @@ export function enhancedLoggerInjectionMiddlewareFactory({
   logger: ILogger;
 }) {
   return function enhancedLoggerInjectionMiddleware(
-    ctx: ServiceContext<any, any, ParamsContextWithEnhancedLogger>,
+    ctx: ServiceContext,
     next: () => Promise<any>
   ) {
-    ctx.enhancedLogger = logger;
+    (
+      ctx as ServiceContext<any, any, ParamsContextWithEnhancedLogger>
+    ).enhancedLogger = logger;
 
     return next();
   };
