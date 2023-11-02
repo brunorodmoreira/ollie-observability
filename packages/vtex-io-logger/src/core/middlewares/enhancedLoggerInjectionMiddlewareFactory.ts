@@ -5,7 +5,7 @@ import { ParamsContextWithEnhancedLogger } from "../../types/service";
 export function enhancedLoggerInjectionMiddlewareFactory({
   logger,
 }: {
-  logger: ILogger;
+  logger?: ILogger;
 }) {
   return function enhancedLoggerInjectionMiddleware(
     ctx: ServiceContext,
@@ -13,7 +13,7 @@ export function enhancedLoggerInjectionMiddlewareFactory({
   ) {
     (
       ctx as ServiceContext<any, any, ParamsContextWithEnhancedLogger>
-    ).enhancedLogger = logger;
+    ).enhancedLogger = logger || ctx.vtex.logger;
 
     return next();
   };

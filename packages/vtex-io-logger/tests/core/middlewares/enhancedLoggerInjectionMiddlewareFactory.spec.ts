@@ -26,6 +26,21 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
     expect(ctx.enhancedLogger).toBe(logger);
   });
 
+  it("should use ctx.vtex.logger if logger is not provided", async () => {
+    const vtexLogger: ILogger = {
+      debug: jest.fn(),
+      error: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+    };
+
+    ctx.vtex = { logger: vtexLogger } as any;
+
+    const middleware = enhancedLoggerInjectionMiddlewareFactory({});
+    await middleware(ctx, next);
+    expect(ctx.enhancedLogger).toBe(vtexLogger);
+  });
+
   it("should call the next function", async () => {
     const middleware = enhancedLoggerInjectionMiddlewareFactory({ logger });
     await middleware(ctx, next);
