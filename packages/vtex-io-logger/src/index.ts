@@ -8,10 +8,11 @@ interface Options {
   logger?: ILogger;
 }
 
-export function withEnhancedLogger(
-  service: Service<IOClients, RecorderState, ParamsContext>,
-  { logger }: Options
-) {
+export function withEnhancedLogger<
+  T extends IOClients,
+  U extends RecorderState,
+  V extends ParamsContext
+>(service: Service<T, U, V>, { logger }: Options) {
   const { config } = service;
 
   let routes = injectEnhancedLoggerToRoutes(config.routes, { logger });

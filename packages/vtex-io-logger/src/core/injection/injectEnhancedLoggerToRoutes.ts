@@ -3,7 +3,7 @@ import { ILogger } from "../../types/logger";
 import { enhancedLoggerInjectionMiddlewareFactory } from "./enhancedLoggerInjectionMiddlewareFactory";
 
 export function injectEnhancedLoggerToRoutes(
-  routes: ServiceConfig["routes"],
+  routes: ServiceConfig<any, any, any>["routes"],
   { logger }: { logger?: ILogger }
 ) {
   if (!routes) {
