@@ -11,6 +11,7 @@ describe("getBindingsForRoute", () => {
     account: "testAccount",
     workspace: "testWorkspace",
     traceId: "testTraceId",
+    type: "route",
   };
 
   const mockContext: any = {

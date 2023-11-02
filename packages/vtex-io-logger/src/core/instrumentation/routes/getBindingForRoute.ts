@@ -20,5 +20,6 @@ export function getBindingsForRoute(ctx: ServiceContext) {
     account,
     workspace,
     traceId: tracer?.traceId,
+    type: "route",
   };
 }
