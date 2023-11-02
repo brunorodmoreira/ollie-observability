@@ -12,7 +12,7 @@ export function withEnhancedLogger<
   T extends IOClients,
   U extends RecorderState,
   V extends ParamsContext
->(service: Service<T, U, V>, { logger }: Options) {
+>(service: Service<T, U, V>, { logger }: Options = {}) {
   const { config } = service;
 
   let routes = injectEnhancedLoggerToRoutes(config.routes, { logger });
