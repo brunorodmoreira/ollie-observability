@@ -2,7 +2,7 @@
   "name": "vtex-io-logger",
   "version": "0.0.0",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
@@ -10,8 +10,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "esbuild --bundle=src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --packages=external --platform=node",
-    "build:esm": "esbuild --bundle=src/index.ts --outfile=dist/index.esm.js --format=esm --minify --sourcemap --packages=external --platform=node",
+    "build": "rm -rf dist && node ./esbuild.config.js && yarn ts-types",
+    "ts-types": "tsc --emitDeclarationOnly --outDir dist",
     "test": "jest",
     "lint": "eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
@@ -20,6 +20,7 @@
     "@types/jest": "^29.5.7",
     "@vtex/api": "^6.46.0",
     "esbuild": "^0.19.5",
+    "esbuild-node-externals": "^1.9.0",
     "eslint": "^8.52.0",
     "eslint-config-custom": "*",
     "jest": "^29.7.0",
