@@ -1,5 +1,5 @@
 {
-  "name": "vtex-io-logger",
+  "name": "@sunstone/vtex-io-logger",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
