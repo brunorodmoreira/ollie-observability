@@ -1,10 +1,10 @@
 import { RouteHandler } from "@vtex/api";
-import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/middlewares/enhancedLoggerInjectionMiddlewareFactory";
-import { injectEnhancedLoggerToRoutes } from "../../../src/core/routes/injectEnhancedLoggerToRoutes";
+import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/injection/enhancedLoggerInjectionMiddlewareFactory";
+import { injectEnhancedLoggerToRoutes } from "../../../src/core/injection/injectEnhancedLoggerToRoutes";
 import { ILogger } from "../../../src/types/logger";
 
 jest.mock(
-  "../../../src/core/middlewares/enhancedLoggerInjectionMiddlewareFactory"
+  "../../../src/core/injection/enhancedLoggerInjectionMiddlewareFactory"
 );
 
 describe("injectEnhancedLoggerToRoutes", () => {

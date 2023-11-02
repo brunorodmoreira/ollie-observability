@@ -1,5 +1,5 @@
 import type { ServiceContext } from "@vtex/api";
-import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/middlewares/enhancedLoggerInjectionMiddlewareFactory";
+import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/injection/enhancedLoggerInjectionMiddlewareFactory";
 import { ILogger } from "../../../src/types/logger";
 import { ParamsContextWithEnhancedLogger } from "../../../src/types/service";
 
