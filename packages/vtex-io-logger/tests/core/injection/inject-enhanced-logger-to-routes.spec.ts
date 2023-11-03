@@ -13,6 +13,7 @@ describe("injectEnhancedLoggerToRoutes", () => {
     error: jest.fn(),
     debug: jest.fn(),
     warn: jest.fn(),
+    log: jest.fn(),
   } as Ollie.Logger;
 
   const mockLoggerMiddleware = jest.fn();

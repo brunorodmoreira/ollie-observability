@@ -14,6 +14,7 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
       error: jest.fn(),
       info: jest.fn(),
       warn: jest.fn(),
+      log: jest.fn(),
     };
 
     ctx = {} as any;
@@ -32,6 +33,7 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
       error: jest.fn(),
       info: jest.fn(),
       warn: jest.fn(),
+      log: jest.fn(),
     };
 
     ctx.vtex = { logger: vtexLogger } as any;

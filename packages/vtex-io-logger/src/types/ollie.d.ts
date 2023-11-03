@@ -1,11 +1,20 @@
 import type { ParamsContext, ServiceContext } from "@vtex/api";
 
-type LogFn = (message: any) => void;
+type LogFn = (...args: any[]) => void;
 
 export interface ParamsContextWithOllie extends ParamsContext {
   ollie: {
     logger: Ollie.Logger;
   };
+}
+
+interface OptionsWithLogger {
+  logger: Ollie.Logger;
+  interceptNativeLogger?: boolean;
+}
+
+interface OptionsWithoutLogger {
+  logger?: undefined;
 }
 
 export type ContextWithOllie<
@@ -19,9 +28,8 @@ export declare namespace Ollie {
     info: LogFn;
     warn: LogFn;
     error: LogFn;
+    log: LogFn;
   }
 
-  interface Options {
-    logger?: Logger;
-  }
+  type Options = OptionsWithLogger | OptionsWithoutLogger;
 }
