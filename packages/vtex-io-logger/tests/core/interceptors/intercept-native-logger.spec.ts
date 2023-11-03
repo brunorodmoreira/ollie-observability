@@ -9,7 +9,6 @@ describe("interceptNativeLogger", () => {
 
   beforeEach(() => {
     logger = {
-      log: jest.fn(),
       info: jest.fn(),
       error: jest.fn(),
       warn: jest.fn(),

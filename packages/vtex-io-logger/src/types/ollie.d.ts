@@ -19,7 +19,6 @@ export declare namespace Ollie {
     info: LogFn;
     warn: LogFn;
     error: LogFn;
-    log: LogFn;
   }
 
   interface Options {
