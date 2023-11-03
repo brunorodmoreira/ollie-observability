@@ -2,11 +2,11 @@
 import type { ServiceContext } from "@vtex/api";
 import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/injection/enhanced-logger-injection-middleware-factory";
 import type { Logger } from "../../../src/types/logger";
-import type { ParamsContextWithSunstone } from "../../../src/types/service";
+import type { ParamsContextWithOllie } from "../../../src/types/service";
 
 describe("enhancedLoggerInjectionMiddlewareFactory", () => {
   let logger: Logger;
-  let ctx: ServiceContext<any, any, ParamsContextWithSunstone>;
+  let ctx: ServiceContext<any, any, ParamsContextWithOllie>;
   let next: jest.Mock;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
   it("should inject the logger into the context", async () => {
     const middleware = enhancedLoggerInjectionMiddlewareFactory({ logger });
     await middleware(ctx, next);
-    expect(ctx.sunstone.logger).toBe(logger);
+    expect(ctx.ollie.logger).toBe(logger);
   });
 
   it("should use ctx.vtex.logger if logger is not provided", async () => {
@@ -39,7 +39,7 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
 
     const middleware = enhancedLoggerInjectionMiddlewareFactory({});
     await middleware(ctx, next);
-    expect(ctx.sunstone.logger).toBe(vtexLogger);
+    expect(ctx.ollie.logger).toBe(vtexLogger);
   });
 
   it("should call the next function", async () => {

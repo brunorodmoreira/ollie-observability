@@ -6,7 +6,7 @@ import type {
 } from "@vtex/api";
 import { LRUCache, Service, method } from "@vtex/api";
 
-import { withEnhancedLogger } from "@sunstone/vtex-io-logger";
+import { withEnhancedLogger } from "@ollie/vtex-io-logger";
 import { Clients } from "./clients";
 import logger from "./lib/logger";
 import { status } from "./middlewares/status";
@@ -46,7 +46,7 @@ declare global {
   type Context = ServiceContext<
     Clients,
     State,
-    ParamsContext & { sunstone: { logger: any } }
+    ParamsContext & { ollie: { logger: any } }
   >;
 
   // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.

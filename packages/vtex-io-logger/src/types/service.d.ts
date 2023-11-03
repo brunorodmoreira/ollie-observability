@@ -1,8 +1,8 @@
 import type { ParamsContext } from "@vtex/api";
 import type { Logger } from "./logger";
 
-export interface ParamsContextWithSunstone extends ParamsContext {
-  sunstone: {
+export interface ParamsContextWithOllie extends ParamsContext {
+  ollie: {
     logger: Logger;
   };
 }

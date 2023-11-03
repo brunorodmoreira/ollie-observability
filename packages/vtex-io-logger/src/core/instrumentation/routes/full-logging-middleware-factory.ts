@@ -1,14 +1,14 @@
 import type { ServiceContext } from "@vtex/api";
-import type { ParamsContextWithSunstone } from "../../../types/service";
+import type { ParamsContextWithOllie } from "../../../types/service";
 import { getBindingsForRoute } from "./get-binding-for-route";
 
 export function fullLoggingMiddlewareFactory() {
   return async function fullLoggingMiddleware(
-    ctx: ServiceContext<any, any, ParamsContextWithSunstone>,
+    ctx: ServiceContext<any, any, ParamsContextWithOllie>,
     next: () => Promise<any>
   ) {
     const {
-      sunstone: { logger },
+      ollie: { logger },
     } = ctx;
 
     const bindings = getBindingsForRoute(ctx);

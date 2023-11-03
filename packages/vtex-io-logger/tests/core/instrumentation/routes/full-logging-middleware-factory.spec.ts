@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment -- necessary for mocks */
 import type { ServiceContext } from "@vtex/api";
 import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/full-logging-middleware-factory";
-import type { ParamsContextWithSunstone } from "../../../../src/types/service";
+import type { ParamsContextWithOllie } from "../../../../src/types/service";
 
 describe("fullLoggingMiddlewareFactory", () => {
-  let ctx: ServiceContext<any, any, ParamsContextWithSunstone>;
+  let ctx: ServiceContext<any, any, ParamsContextWithOllie>;
   let next: jest.Mock;
   let logger: { info: jest.Mock; error: jest.Mock };
 
@@ -12,7 +12,7 @@ describe("fullLoggingMiddlewareFactory", () => {
     next = jest.fn();
     logger = { info: jest.fn(), error: jest.fn() };
     ctx = {
-      sunstone: { logger },
+      ollie: { logger },
       request: {
         url: "testUrl",
         method: "GET",

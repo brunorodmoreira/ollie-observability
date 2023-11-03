@@ -8,7 +8,7 @@
     "@types/express-serve-static-core": "4.16.0"
   },
   "dependencies": {
-    "@sunstone/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/sunstone/commit/9416a3b1/@sunstone/vtex-io-logger",
+    "@ollie/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/sunstone/commit/9416a3b1/@sunstone/vtex-io-logger",
     "co-body": "^6.0.0"
   },
   "devDependencies": {
