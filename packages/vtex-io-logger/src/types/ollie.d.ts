@@ -8,15 +8,6 @@ export interface ParamsContextWithOllie extends ParamsContext {
   };
 }
 
-interface OptionsWithLogger {
-  logger: Ollie.Logger;
-  interceptNativeLogger?: boolean;
-}
-
-interface OptionsWithoutLogger {
-  logger?: undefined;
-}
-
 export type ContextWithOllie<
   ClientsT extends IOClients = IOClients,
   StateT extends RecorderState = RecorderState
@@ -31,5 +22,8 @@ export declare namespace Ollie {
     log: LogFn;
   }
 
-  type Options = OptionsWithLogger | OptionsWithoutLogger;
+  interface Options {
+    logger?: Logger;
+    interceptVtexLogger?: boolean;
+  }
 }
