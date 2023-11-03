@@ -1,17 +1,17 @@
 import { ServiceContext } from "@vtex/api";
 import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/fullLoggingMiddlewareFactory";
-import { ParamsContextWithEnhancedLogger } from "../../../../src/types/service";
+import { ParamsContextWithSunstone } from "../../../../src/types/service";
 
 describe("fullLoggingMiddlewareFactory", () => {
-  let ctx: ServiceContext<any, any, ParamsContextWithEnhancedLogger>;
+  let ctx: ServiceContext<any, any, ParamsContextWithSunstone>;
   let next: jest.Mock;
-  let enhancedLogger: { info: jest.Mock; error: jest.Mock };
+  let logger: { info: jest.Mock; error: jest.Mock };
 
   beforeEach(() => {
     next = jest.fn();
-    enhancedLogger = { info: jest.fn(), error: jest.fn() };
+    logger = { info: jest.fn(), error: jest.fn() };
     ctx = {
-      enhancedLogger,
+      sunstone: { logger },
       request: {
         url: "testUrl",
         method: "GET",
@@ -32,8 +32,8 @@ describe("fullLoggingMiddlewareFactory", () => {
     const middleware = fullLoggingMiddlewareFactory();
     await middleware(ctx, next);
 
-    expect(enhancedLogger.info).toHaveBeenCalled();
-    expect(enhancedLogger.error).not.toHaveBeenCalled();
+    expect(logger.info).toHaveBeenCalled();
+    expect(logger.error).not.toHaveBeenCalled();
   });
 
   it("should log error when request finishes with error", async () => {
@@ -46,8 +46,8 @@ describe("fullLoggingMiddlewareFactory", () => {
       await middleware(ctx, next);
     } catch (err) {}
 
-    expect(enhancedLogger.error).toHaveBeenCalled();
-    expect(enhancedLogger.info).not.toHaveBeenCalled();
+    expect(logger.error).toHaveBeenCalled();
+    expect(logger.info).not.toHaveBeenCalled();
   });
 
   it("should rethrow the error", async () => {

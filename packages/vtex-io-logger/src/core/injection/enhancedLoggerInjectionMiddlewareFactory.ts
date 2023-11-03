@@ -1,11 +1,6 @@
 import { ServiceContext } from "@vtex/api";
 import { ILogger } from "../../types/logger";
-import { ParamsContextWithEnhancedLogger } from "../../types/service";
-
-interface LoggerInjectionMiddleware extends Function {
-  (ctx: ServiceContext, next: () => Promise<any>): Promise<void>;
-  __loggerInjectionMiddleware?: boolean;
-}
+import { ParamsContextWithSunstone } from "../../types/service";
 
 export function enhancedLoggerInjectionMiddlewareFactory({
   logger,
@@ -13,12 +8,12 @@ export function enhancedLoggerInjectionMiddlewareFactory({
   logger?: ILogger;
 }) {
   const middleware = function enhancedLoggerInjectionMiddleware(
-    ctx: ServiceContext,
+    ctx: ServiceContext<any, any, ParamsContextWithSunstone>,
     next: () => Promise<any>
   ) {
-    (
-      ctx as ServiceContext<any, any, ParamsContextWithEnhancedLogger>
-    ).enhancedLogger = logger || ctx.vtex.logger;
+    ctx.sunstone = {
+      logger: logger || ctx.vtex.logger,
+    };
 
     return next();
   };

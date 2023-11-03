@@ -1,13 +1,15 @@
 import { ServiceContext } from "@vtex/api";
-import { ParamsContextWithEnhancedLogger } from "../../../types/service";
+import { ParamsContextWithSunstone } from "../../../types/service";
 import { getBindingsForRoute } from "./getBindingForRoute";
 
 export function fullLoggingMiddlewareFactory() {
   return async function fullLoggingMiddleware(
-    ctx: ServiceContext<any, any, ParamsContextWithEnhancedLogger>,
+    ctx: ServiceContext<any, any, ParamsContextWithSunstone>,
     next: () => Promise<any>
   ) {
-    const { enhancedLogger } = ctx;
+    const {
+      sunstone: { logger },
+    } = ctx;
 
     const bindings = getBindingsForRoute(ctx);
 
@@ -19,14 +21,14 @@ export function fullLoggingMiddlewareFactory() {
       const message = "Request finished with error";
 
       if (err instanceof Error) {
-        enhancedLogger.error({
+        logger.error({
           ...bindings,
           message,
           error: err.message,
           stack: err.stack,
         });
       } else {
-        enhancedLogger.error({
+        logger.error({
           ...bindings,
           message,
           error: "Unknown error",
@@ -40,7 +42,7 @@ export function fullLoggingMiddlewareFactory() {
 
     const duration = Number(endTime - startTime) / 1e6;
 
-    enhancedLogger.info({
+    logger.info({
       ...bindings,
       duration,
       message: "Request finished successfully",
