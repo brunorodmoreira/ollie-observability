@@ -11,7 +11,7 @@ export function enhancedLoggerInjectionMiddlewareFactory({
   logger,
 }: {
   logger?: ILogger;
-}): LoggerInjectionMiddleware {
+}) {
   const middleware = function enhancedLoggerInjectionMiddleware(
     ctx: ServiceContext,
     next: () => Promise<any>
