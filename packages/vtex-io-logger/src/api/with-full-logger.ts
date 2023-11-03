@@ -2,10 +2,10 @@ import type { IOClients, ParamsContext, RecorderState } from "@vtex/api";
 import { Service } from "@vtex/api";
 import { injectEnhancedLoggerToRoutes } from "../core/injection/inject-enhanced-logger-to-routes";
 import { instrumentRoutes } from "../core/instrumentation/routes/instrument-routes";
-import type { Logger } from "../types/logger";
+import type { Ollie } from "../types/ollie";
 
 interface Options {
-  logger?: Logger;
+  logger?: Ollie.Logger;
 }
 
 export function withFullLogger<

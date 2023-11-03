@@ -1,7 +1,7 @@
 import { enhancedLoggerInjectionMiddlewareFactory } from "../core/injection/enhanced-logger-injection-middleware-factory";
-import type { Logger } from "../types/logger";
+import type { Ollie } from "../types/ollie";
 
-export function loggerMiddleware({ logger }: { logger: Logger }) {
+export function loggerMiddleware({ logger }: { logger: Ollie.Logger }) {
   return enhancedLoggerInjectionMiddlewareFactory({
     logger,
   });
