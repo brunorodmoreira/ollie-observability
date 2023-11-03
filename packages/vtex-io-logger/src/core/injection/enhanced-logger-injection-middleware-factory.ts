@@ -15,7 +15,7 @@ export function enhancedLoggerInjectionMiddlewareFactory({
     };
 
     if (logger && ctx.ollie.logger !== ctx.vtex.logger && interceptVtexLogger) {
-      interceptNativeLogger(ctx, { logger: ctx.ollie.logger });
+      interceptNativeLogger(ctx, { logger });
     }
 
     return next();
