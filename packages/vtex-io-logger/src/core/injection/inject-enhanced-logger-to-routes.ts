@@ -4,15 +4,14 @@ import { enhancedLoggerInjectionMiddlewareFactory } from "./enhanced-logger-inje
 
 export function injectEnhancedLoggerToRoutes(
   routes: ServiceConfig<any, any, any>["routes"],
-  { logger }: { logger?: Ollie.Logger }
+  options: Ollie.Options
 ) {
   if (!routes) {
     return routes;
   }
 
-  const injectionLoggerMiddleware = enhancedLoggerInjectionMiddlewareFactory({
-    logger,
-  });
+  const injectionLoggerMiddleware =
+    enhancedLoggerInjectionMiddlewareFactory(options);
 
   const enhancedRoutes: typeof routes = {};
 

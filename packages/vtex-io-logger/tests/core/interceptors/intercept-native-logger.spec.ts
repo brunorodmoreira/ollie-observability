@@ -1,24 +1,13 @@
-import {
-  NATIVE_VTEX_LOGGER_TRACE,
-  interceptNativeLogger,
-} from "../../../src/core/interceptors/intercept-native-logger";
+import { LogLevel, type ServiceContext } from "@vtex/api";
+import { interceptNativeLogger } from "../../../src/core/interceptors/intercept-native-logger";
 import type { Ollie } from "../../../src/types/ollie";
-import { getFunctionCaller } from "../../../src/utils/tracings";
-
-jest.mock("../../../src/utils/tracings", () => ({
-  getFunctionCaller: jest.fn(),
-}));
 
 describe("interceptNativeLogger", () => {
-  const getFunctionCallerMock = getFunctionCaller as jest.Mock;
   let nativeLog: jest.SpyInstance;
   let logger: Ollie.Logger;
+  let mockContext: ServiceContext;
 
   beforeEach(() => {
-    nativeLog = jest.spyOn(global.console, "log").mockImplementation(() => {
-      /* do nothing */
-    });
-
     logger = {
       log: jest.fn(),
       info: jest.fn(),
@@ -26,31 +15,43 @@ describe("interceptNativeLogger", () => {
       warn: jest.fn(),
       debug: jest.fn(),
     };
+
+    nativeLog = jest.fn();
+
+    mockContext = {
+      vtex: {
+        logger: {
+          log: nativeLog,
+        },
+      },
+    } as never;
   });
 
   afterEach(() => {
     nativeLog.mockRestore();
   });
 
-  test("should call nativeLog when isVtex is false", () => {
-    getFunctionCallerMock.mockReturnValue("at Random.Function (/random/path");
+  test("should call logger[logLevel] with correct arguments", () => {
+    const message = "test";
+    const logLevel = LogLevel.Info;
 
-    interceptNativeLogger({ logger });
+    interceptNativeLogger(mockContext, { logger });
 
-    global.console.log("test");
+    mockContext.vtex.logger.log(message, logLevel);
 
-    expect(nativeLog).toHaveBeenCalledWith("test");
-    expect(logger.log).not.toHaveBeenCalled();
+    expect(logger[logLevel]).toHaveBeenCalledWith(
+      expect.objectContaining({ __VTEX_IO_LOG: true, data: message })
+    );
   });
 
-  test("should call logger.log and nativeLog when isVtex is true", () => {
-    getFunctionCallerMock.mockReturnValue(NATIVE_VTEX_LOGGER_TRACE);
+  test("should call nativeLog.apply with correct arguments", () => {
+    const message = "test";
+    const logLevel = LogLevel.Info;
 
-    interceptNativeLogger({ logger });
+    interceptNativeLogger(mockContext, { logger });
 
-    global.console.log("test");
+    mockContext.vtex.logger.log(message, logLevel);
 
-    expect(nativeLog).toHaveBeenCalledWith("test");
-    expect(logger.log).toHaveBeenCalledWith("test");
+    expect(nativeLog).toHaveBeenCalledWith(message, logLevel);
   });
 });

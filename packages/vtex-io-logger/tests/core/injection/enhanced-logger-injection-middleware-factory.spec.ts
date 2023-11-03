@@ -17,7 +17,13 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
       log: jest.fn(),
     };
 
-    ctx = {} as any;
+    ctx = {
+      vtex: {
+        logger: {
+          log: jest.fn(),
+        },
+      },
+    } as any;
     next = jest.fn().mockResolvedValue(undefined);
   });
 

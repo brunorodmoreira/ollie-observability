@@ -1,11 +1,12 @@
 import type { ServiceContext } from "@vtex/api";
+import { ollieConsole } from "../../services/ollie-console";
 import type { Ollie, ParamsContextWithOllie } from "../../types/ollie";
+import { interceptNativeLogger } from "../interceptors/intercept-native-logger";
 
 export function enhancedLoggerInjectionMiddlewareFactory({
   logger,
-}: {
-  logger?: Ollie.Logger;
-}) {
+  interceptVtexLogger,
+}: Ollie.Options) {
   const middleware = function enhancedLoggerInjectionMiddleware(
     ctx: ServiceContext<any, any, ParamsContextWithOllie>,
     next: () => Promise<any>
@@ -13,6 +14,14 @@ export function enhancedLoggerInjectionMiddlewareFactory({
     ctx.ollie = {
       logger: logger || ctx.vtex.logger,
     };
+
+    if (logger && ctx.ollie.logger !== ctx.vtex.logger && interceptVtexLogger) {
+      interceptNativeLogger(ctx, { logger: ctx.ollie.logger });
+
+      ollieConsole.warn(
+        'Intercepting native logger. Use "interceptVtexLogger" option to disable this behavior'
+      );
+    }
 
     return next();
   };

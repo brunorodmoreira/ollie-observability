@@ -1,35 +1,33 @@
+import type { LogLevel, ServiceContext } from "@vtex/api";
 import type { Ollie } from "../../types/ollie";
-import { getFunctionCaller } from "../../utils/tracings";
 
-export const NATIVE_VTEX_LOGGER_TRACE =
-  "at Logger.log (/usr/local/app/node_modules/@vtex/api";
-
-function isNativeVtexLoggerTrace(caller: string | undefined) {
-  if (!caller) {
-    return false;
-  }
-
-  return caller.startsWith(NATIVE_VTEX_LOGGER_TRACE);
+function formatData(data: unknown, level: string, ctx: ServiceContext) {
+  return {
+    data,
+    level,
+    account: ctx.vtex.account,
+    workspace: ctx.vtex.workspace,
+    requestId: ctx.vtex.requestId,
+    operationId: ctx.vtex.operationId,
+    production: ctx.vtex.production,
+    __VTEX_IO_LOG: true,
+  };
 }
-// TODO: Currently VTEX Logger uses `console.log` to log messages. If this changes, we need to update this interceptor.
-export function interceptNativeLogger({ logger }: { logger: Ollie.Logger }) {
-  // eslint-disable-next-line @typescript-eslint/unbound-method -- necessary to intercept native logger
-  const nativeLog = global.console.log;
 
-  global.console.log = (...args: any[]) => {
-    const caller = getFunctionCaller();
+export function interceptNativeLogger(
+  ctx: ServiceContext,
+  { logger }: { logger: Ollie.Logger }
+) {
+  const nativeLog = ctx.vtex.logger.log;
 
-    const isVtex = isNativeVtexLoggerTrace(caller);
+  ctx.vtex.logger.log = function logInterceptionByOllie(
+    message: any,
+    logLevel: LogLevel
+  ) {
+    const data = formatData(message, logLevel, ctx);
 
-    if (!isVtex) {
-      nativeLog.apply(global.console, args);
+    logger[logLevel](data);
 
-      return;
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- it's safe
-    logger.log(...args);
-
-    nativeLog.apply(global.console, args);
+    nativeLog.apply(ctx.vtex.logger, [message, logLevel]);
   };
 }
