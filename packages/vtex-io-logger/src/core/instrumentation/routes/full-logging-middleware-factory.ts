@@ -1,6 +1,6 @@
-import { ServiceContext } from "@vtex/api";
-import { ParamsContextWithSunstone } from "../../../types/service";
-import { getBindingsForRoute } from "./getBindingForRoute";
+import type { ServiceContext } from "@vtex/api";
+import type { ParamsContextWithSunstone } from "../../../types/service";
+import { getBindingsForRoute } from "./get-binding-for-route";
 
 export function fullLoggingMiddlewareFactory() {
   return async function fullLoggingMiddleware(

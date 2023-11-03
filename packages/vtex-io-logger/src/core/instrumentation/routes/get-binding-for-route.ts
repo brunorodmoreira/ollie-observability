@@ -1,4 +1,4 @@
-import { ServiceContext } from "@vtex/api";
+import type { ServiceContext } from "@vtex/api";
 
 export function getBindingsForRoute(ctx: ServiceContext) {
   const {
@@ -19,7 +19,7 @@ export function getBindingsForRoute(ctx: ServiceContext) {
     production,
     account,
     workspace,
-    traceId: tracer?.traceId,
+    traceId: tracer.traceId,
     type: "route",
   };
 }

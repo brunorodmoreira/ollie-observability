@@ -1,8 +1,8 @@
 import type { IOClients, ParamsContext, RecorderState } from "@vtex/api";
 import { Service } from "@vtex/api";
-import { ILogger } from "../../types/logger";
-import { injectEnhancedLoggerToRoutes } from "../injection/injectEnhancedLoggerToRoutes";
-import { instrumentRoutes } from "../instrumentation/routes/instrumentRoutes";
+import { injectEnhancedLoggerToRoutes } from "../core/injection/inject-enhanced-logger-to-routes";
+import { instrumentRoutes } from "../core/instrumentation/routes/instrument-routes";
+import type { ILogger } from "../types/logger";
 
 interface Options {
   logger?: ILogger;

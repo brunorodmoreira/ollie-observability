@@ -1,6 +1,6 @@
 import type { RouteHandler, ServiceConfig } from "@vtex/api";
 import { addItemToPosition } from "../../../utils/arrays";
-import { fullLoggingMiddlewareFactory } from "./fullLoggingMiddlewareFactory";
+import { fullLoggingMiddlewareFactory } from "./full-logging-middleware-factory";
 
 export function instrumentRoutes(routes: ServiceConfig["routes"]) {
   if (!routes) {
