@@ -1,11 +1,11 @@
 import type { ServiceContext } from "@vtex/api";
-import type { ILogger } from "../../types/logger";
+import type { Logger } from "../../types/logger";
 import type { ParamsContextWithSunstone } from "../../types/service";
 
 export function enhancedLoggerInjectionMiddlewareFactory({
   logger,
 }: {
-  logger?: ILogger;
+  logger?: Logger;
 }) {
   const middleware = function enhancedLoggerInjectionMiddleware(
     ctx: ServiceContext<any, any, ParamsContextWithSunstone>,

@@ -1,6 +1,6 @@
 type LogFn = (message: any) => void;
 
-export interface ILogger {
+export interface Logger {
   debug: LogFn;
   info: LogFn;
   warn: LogFn;

@@ -1,10 +1,10 @@
 import type { ServiceConfig } from "@vtex/api";
-import type { ILogger } from "../../types/logger";
+import type { Logger } from "../../types/logger";
 import { enhancedLoggerInjectionMiddlewareFactory } from "./enhanced-logger-injection-middleware-factory";
 
 export function injectEnhancedLoggerToRoutes(
   routes: ServiceConfig<any, any, any>["routes"],
-  { logger }: { logger?: ILogger }
+  { logger }: { logger?: Logger }
 ) {
   if (!routes) {
     return routes;
