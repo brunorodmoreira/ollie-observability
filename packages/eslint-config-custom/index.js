@@ -34,5 +34,6 @@ module.exports = {
   rules: {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "warn",
+    "no-console": ["error", { allow: ["warn", "error", "info"] }]
   }
 };

@@ -1,4 +1,5 @@
 import type { RouteHandler, ServiceConfig } from "@vtex/api";
+import { ollieConsole } from "../../../services/ollie-console";
 import { addItemToPosition } from "../../../utils/arrays";
 import { fullLoggingMiddlewareFactory } from "./full-logging-middleware-factory";
 
@@ -28,8 +29,7 @@ export function instrumentRoutes(routes: ServiceConfig["routes"]) {
     }
 
     if (indexOfInjectedLogger > 0) {
-      // eslint-disable-next-line no-console -- only a warning
-      console.warn(
+      ollieConsole.warn(
         `Route ${name} has the logger injected in a position different from the first one.`
       );
     }
