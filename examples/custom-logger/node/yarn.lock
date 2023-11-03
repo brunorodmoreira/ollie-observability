@@ -9,9 +9,9 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@sunstone/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/sunstone/commit/9416a3b1/@sunstone/vtex-io-logger":
+"@ollie/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/sunstone/commit/96e97183/@ollie/vtex-io-logger":
   version "0.0.0"
-  resolved "https://pkg.csb.dev/brunorodmoreira/sunstone/commit/9416a3b1/@sunstone/vtex-io-logger#e930759ae58241410b88506b88f9e58920c5b30a"
+  resolved "https://pkg.csb.dev/brunorodmoreira/sunstone/commit/96e97183/@ollie/vtex-io-logger#480fcc39d488d19c3832a21d6a37a04129b99a0e"
 
 "@types/accepts@*":
   version "1.3.5"

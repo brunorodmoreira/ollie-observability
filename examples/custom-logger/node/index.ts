@@ -1,12 +1,7 @@
-import type {
-  ClientsConfig,
-  ParamsContext,
-  RecorderState,
-  ServiceContext,
-} from "@vtex/api";
+import type { ClientsConfig, RecorderState } from "@vtex/api";
 import { LRUCache, Service, method } from "@vtex/api";
 
-import { withEnhancedLogger } from "@ollie/vtex-io-logger";
+import { ContextWithOllie, withFullLogger } from "@ollie/vtex-io-logger";
 import { Clients } from "./clients";
 import logger from "./lib/logger";
 import { status } from "./middlewares/status";
@@ -43,11 +38,7 @@ const clients: ClientsConfig<Clients> = {
 
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
-  type Context = ServiceContext<
-    Clients,
-    State,
-    ParamsContext & { ollie: { logger: any } }
-  >;
+  type Context = ContextWithOllie<Clients, State>;
 
   // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
   interface State extends RecorderState {
@@ -66,4 +57,4 @@ const service = new Service({
   },
 });
 
-export default withEnhancedLogger(service, { logger });
+export default withFullLogger(service, { logger });
