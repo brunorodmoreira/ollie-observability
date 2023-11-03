@@ -1,11 +1,17 @@
-import type { ClientsConfig, ParamsContext, RecorderState, ServiceContext } from '@vtex/api'
+import type {
+  ClientsConfig,
+  ParamsContext,
+  RecorderState,
+  ServiceContext,
+} from '@vtex/api'
 import { LRUCache, Service, method } from '@vtex/api'
 
+import { withEnhancedLogger } from '@sunstone/vtex-io-logger'
 import { Clients } from './clients'
 import { status } from './middlewares/status'
 import { validate } from './middlewares/validate'
 
-const TIMEOUT_MS = 800
+const TIMEOUT_MS = 5000
 
 // Create a LRU memory cache for the Status client.
 // The 'max' parameter sets the size of the cache.
@@ -36,7 +42,11 @@ const clients: ClientsConfig<Clients> = {
 
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
-  type Context = ServiceContext<Clients, State, ParamsContext & { logger: string }>
+  type Context = ServiceContext<
+    Clients,
+    State,
+    ParamsContext & { logger: string }
+  >
 
   // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
   interface State extends RecorderState {
@@ -45,7 +55,7 @@ declare global {
 }
 
 // Export a service that defines route handlers and client options.
-export default new Service({
+const service = new Service({
   clients,
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
@@ -54,3 +64,5 @@ export default new Service({
     }),
   },
 })
+
+export default withEnhancedLogger(service, {})

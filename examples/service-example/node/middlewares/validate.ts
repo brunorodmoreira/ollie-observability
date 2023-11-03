@@ -7,8 +7,6 @@ export async function validate(ctx: Context, next: () => Promise<any>) {
     },
   } = ctx
 
-  console.info('logger: %s', ctx.logger)
-
   const { code } = params
 
   if (!code) {
@@ -18,8 +16,6 @@ export async function validate(ctx: Context, next: () => Promise<any>) {
   const codeNumber = parseInt(code as string, 10)
 
   ctx.state.code = codeNumber
-
-  ctx.logger = 'my-logger'
 
   await next()
 }
