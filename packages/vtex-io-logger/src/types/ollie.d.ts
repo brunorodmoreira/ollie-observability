@@ -2,6 +2,17 @@ import type { ParamsContext, ServiceContext } from "@vtex/api";
 
 type LogFn = (message: any) => void;
 
+export interface ParamsContextWithOllie extends ParamsContext {
+  ollie: {
+    logger: Ollie.Logger;
+  };
+}
+
+export type ContextWithOllie<
+  ClientsT extends IOClients = IOClients,
+  StateT extends RecorderState = RecorderState
+> = ServiceContext<ClientsT, StateT, ParamsContextWithOllie>;
+
 export declare namespace Ollie {
   interface Logger {
     debug: LogFn;
@@ -10,18 +21,7 @@ export declare namespace Ollie {
     error: LogFn;
   }
 
-  interface ParamsContextWithOllie extends ParamsContext {
-    ollie: {
-      logger: Logger;
-    };
-  }
-
   interface Options {
     logger?: Logger;
   }
-
-  type ContextWithOllie<
-    ClientsT extends IOClients = IOClients,
-    StateT extends RecorderState = RecorderState
-  > = ServiceContext<ClientsT, StateT>;
 }

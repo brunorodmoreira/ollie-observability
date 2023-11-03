@@ -1,5 +1,5 @@
 import type { ServiceContext } from "@vtex/api";
-import type { Ollie } from "../../types/ollie";
+import type { Ollie, ParamsContextWithOllie } from "../../types/ollie";
 
 export function enhancedLoggerInjectionMiddlewareFactory({
   logger,
@@ -7,7 +7,7 @@ export function enhancedLoggerInjectionMiddlewareFactory({
   logger?: Ollie.Logger;
 }) {
   const middleware = function enhancedLoggerInjectionMiddleware(
-    ctx: ServiceContext<any, any, Ollie.ParamsContextWithOllie>,
+    ctx: ServiceContext<any, any, ParamsContextWithOllie>,
     next: () => Promise<any>
   ) {
     ctx.ollie = {

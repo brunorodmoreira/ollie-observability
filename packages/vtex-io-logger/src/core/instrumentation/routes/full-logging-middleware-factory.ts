@@ -1,10 +1,10 @@
 import type { ServiceContext } from "@vtex/api";
-import type { Ollie } from "../../../types/ollie";
+import type { ParamsContextWithOllie } from "../../../types/ollie";
 import { getBindingsForRoute } from "./get-binding-for-route";
 
 export function fullLoggingMiddlewareFactory() {
   return async function fullLoggingMiddleware(
-    ctx: ServiceContext<any, any, Ollie.ParamsContextWithOllie>,
+    ctx: ServiceContext<any, any, ParamsContextWithOllie>,
     next: () => Promise<any>
   ) {
     const {

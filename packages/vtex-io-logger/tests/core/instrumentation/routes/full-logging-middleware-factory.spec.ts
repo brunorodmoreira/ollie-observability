@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment -- necessary for mocks */
 import type { ServiceContext } from "@vtex/api";
 import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/full-logging-middleware-factory";
-import type { Ollie } from "../../../../src/types/ollie";
+import type { ParamsContextWithOllie } from "../../../../src/types/ollie";
 
 describe("fullLoggingMiddlewareFactory", () => {
-  let ctx: ServiceContext<any, any, Ollie.ParamsContextWithOllie>;
+  let ctx: ServiceContext<any, any, ParamsContextWithOllie>;
   let next: jest.Mock;
   let logger: { info: jest.Mock; error: jest.Mock };
 
