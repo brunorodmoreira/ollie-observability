@@ -2,7 +2,7 @@ import type {
   ClientsConfig,
   ParamsContext,
   RecorderState,
-  ServiceContext,
+  ServiceContext
 } from '@vtex/api'
 import { LRUCache, Service, method } from '@vtex/api'
 
@@ -45,7 +45,7 @@ declare global {
   type Context = ServiceContext<
     Clients,
     State,
-    ParamsContext & { logger: string }
+    ParamsContext & { sunstone: { logger: any } }
   >
 
   // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
@@ -65,4 +65,4 @@ const service = new Service({
   },
 })
 
-export default withEnhancedLogger(service, {})
+export default withEnhancedLogger(service)

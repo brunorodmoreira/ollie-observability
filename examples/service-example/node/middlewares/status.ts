@@ -2,9 +2,11 @@ export async function status(ctx: Context, next: () => Promise<any>) {
   const {
     state: { code },
     clients: { status: statusClient },
+    sunstone: { logger },
   } = ctx
 
-  console.info('Received code:', code)
+
+  logger.info(`Calling status with code ${code}`)
 
   const statusResponse = await statusClient.getStatus(code)
 
