@@ -1,5 +1,4 @@
 import type { ServiceContext } from "@vtex/api";
-import { ollieConsole } from "../../services/ollie-console";
 import type { Ollie, ParamsContextWithOllie } from "../../types/ollie";
 import { interceptNativeLogger } from "../interceptors/intercept-native-logger";
 
@@ -17,10 +16,6 @@ export function enhancedLoggerInjectionMiddlewareFactory({
 
     if (logger && ctx.ollie.logger !== ctx.vtex.logger && interceptVtexLogger) {
       interceptNativeLogger(ctx, { logger: ctx.ollie.logger });
-
-      ollieConsole.warn(
-        'Intercepting native logger. Use "interceptVtexLogger" option to disable this behavior'
-      );
     }
 
     return next();
