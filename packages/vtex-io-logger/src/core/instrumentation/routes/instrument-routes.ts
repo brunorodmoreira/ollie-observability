@@ -28,6 +28,7 @@ export function instrumentRoutes(routes: ServiceConfig["routes"]) {
     }
 
     if (indexOfInjectedLogger > 0) {
+      // eslint-disable-next-line no-console -- only a warning
       console.warn(
         `Route ${name} has the logger injected in a position different from the first one.`
       );
