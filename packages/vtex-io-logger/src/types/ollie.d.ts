@@ -2,7 +2,7 @@ import type { ParamsContext } from "@vtex/api";
 
 type LogFn = (message: any) => void;
 
-declare namespace Ollie {
+export declare namespace Ollie {
   export interface Logger {
     debug: LogFn;
     info: LogFn;
