@@ -8,7 +8,7 @@ interface Options {
   logger?: Logger;
 }
 
-export function withEnhancedLogger<
+export function withFullLogger<
   T extends IOClients,
   U extends RecorderState,
   V extends ParamsContext

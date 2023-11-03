@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment -- necessary for mocks */
 import type { ServiceContext } from "@vtex/api";
-import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/injection/enhancedLoggerInjectionMiddlewareFactory";
-import { ILogger } from "../../../src/types/logger";
-import { ParamsContextWithSunstone } from "../../../src/types/service";
+import { enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/injection/enhanced-logger-injection-middleware-factory";
+import type { Logger } from "../../../src/types/logger";
+import type { ParamsContextWithSunstone } from "../../../src/types/service";
 
 describe("enhancedLoggerInjectionMiddlewareFactory", () => {
-  let logger: ILogger;
+  let logger: Logger;
   let ctx: ServiceContext<any, any, ParamsContextWithSunstone>;
   let next: jest.Mock;
 
@@ -27,7 +28,7 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
   });
 
   it("should use ctx.vtex.logger if logger is not provided", async () => {
-    const vtexLogger: ILogger = {
+    const vtexLogger: Logger = {
       debug: jest.fn(),
       error: jest.fn(),
       info: jest.fn(),

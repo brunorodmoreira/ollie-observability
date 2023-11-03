@@ -1,6 +1,7 @@
-import { ServiceContext } from "@vtex/api";
-import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/fullLoggingMiddlewareFactory";
-import { ParamsContextWithSunstone } from "../../../../src/types/service";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment -- necessary for mocks */
+import type { ServiceContext } from "@vtex/api";
+import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/full-logging-middleware-factory";
+import type { ParamsContextWithSunstone } from "../../../../src/types/service";
 
 describe("fullLoggingMiddlewareFactory", () => {
   let ctx: ServiceContext<any, any, ParamsContextWithSunstone>;
@@ -44,7 +45,9 @@ describe("fullLoggingMiddlewareFactory", () => {
 
     try {
       await middleware(ctx, next);
-    } catch (err) {}
+    } catch (err) {
+      /* empty */
+    }
 
     expect(logger.error).toHaveBeenCalled();
     expect(logger.info).not.toHaveBeenCalled();

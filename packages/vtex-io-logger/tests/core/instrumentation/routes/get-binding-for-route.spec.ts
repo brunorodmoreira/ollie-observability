@@ -1,4 +1,5 @@
-import { getBindingsForRoute } from "../../../../src/core/instrumentation/routes/getBindingForRoute";
+/* eslint-disable @typescript-eslint/no-unsafe-argument -- mock */
+import { getBindingsForRoute } from "../../../../src/core/instrumentation/routes/get-binding-for-route";
 
 describe("getBindingsForRoute", () => {
   const expected = {
@@ -14,7 +15,7 @@ describe("getBindingsForRoute", () => {
     type: "route",
   };
 
-  const mockContext: any = {
+  const mockContext = {
     request: {
       url: "testUrl",
       method: "GET",
@@ -30,7 +31,7 @@ describe("getBindingsForRoute", () => {
     },
   };
   it("should return correct object", () => {
-    const result = getBindingsForRoute(mockContext);
+    const result = getBindingsForRoute(mockContext as any);
 
     expect(result).toEqual(expected);
   });
@@ -40,11 +41,11 @@ describe("getBindingsForRoute", () => {
       ...mockContext,
       vtex: {
         ...mockContext.vtex,
-        tracer: undefined,
+        tracer: {},
       },
     };
 
-    const result = getBindingsForRoute(ctx);
+    const result = getBindingsForRoute(ctx as any);
 
     expect(result).toEqual({
       ...expected,

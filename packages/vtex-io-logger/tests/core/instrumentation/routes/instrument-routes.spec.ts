@@ -1,5 +1,5 @@
-import { ServiceConfig } from "@vtex/api";
-import { instrumentRoutes } from "../../../../src/core/instrumentation/routes/instrumentRoutes";
+import type { ServiceConfig } from "@vtex/api";
+import { instrumentRoutes } from "../../../../src/core/instrumentation/routes/instrument-routes";
 
 describe("instrumentRoutes", () => {
   it("should return routes if routes is not provided", () => {
@@ -26,7 +26,9 @@ describe("instrumentRoutes", () => {
   });
 
   it("should add fullLoggingMiddleware to the correct position in the handlers array", () => {
-    function injectionLoggerMiddleware() {}
+    function injectionLoggerMiddleware() {
+      /* empty */
+    }
 
     injectionLoggerMiddleware.__loggerInjectionMiddleware = true;
 
@@ -36,7 +38,8 @@ describe("instrumentRoutes", () => {
 
     const result = instrumentRoutes(routes);
 
-    const handlers = result?.test as any[];
+    // eslint-disable-next-line @typescript-eslint/ban-types -- necessary for testing
+    const handlers = result?.test as Function[];
 
     expect(handlers[1].name).toEqual("fullLoggingMiddleware");
   });
