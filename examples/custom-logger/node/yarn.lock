@@ -9,9 +9,9 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@ollie/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/sunstone/commit/96e97183/@ollie/vtex-io-logger":
+"@ollie/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie/vtex-io-logger":
   version "0.0.0"
-  resolved "https://pkg.csb.dev/brunorodmoreira/sunstone/commit/96e97183/@ollie/vtex-io-logger#480fcc39d488d19c3832a21d6a37a04129b99a0e"
+  resolved "https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie/vtex-io-logger#ac4c2a6f1cee0fe9086939f06667b53780edc239"
 
 "@types/accepts@*":
   version "1.3.5"
@@ -161,10 +161,10 @@
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
   integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
 
-"@vtex/api@6.45.24":
-  version "6.45.24"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.24.tgz#5643d80de9b5ac9491c03a47be0329872896a6eb"
-  integrity sha512-BaNdncM2Jfqdu/DikxrDVH7fdek5vH02nvH4RCyNcZ3KSSYZaKk4QGr2EjEHI/rhkOIbJOlOAW5ol4uDcGbQjQ==
+"@vtex/api@6.46.0":
+  version "6.46.0"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.46.0.tgz#208d14b96cbc8fd5eb6bd18fbd0c8424886e6154"
+  integrity sha512-XAvJlD1FG1GynhPXiMcayunahFCL2r3ilO5MHAWKxYvB/ljyxi4+U+rVpweeaQGpxHfhKHdfPe7qNEEh2oa2lw==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
