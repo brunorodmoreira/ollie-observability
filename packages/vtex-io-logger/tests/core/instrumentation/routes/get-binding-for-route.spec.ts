@@ -2,24 +2,12 @@
 import { getBindingsForRoute } from "../../../../src/core/instrumentation/routes/get-binding-for-route";
 
 describe("getBindingsForRoute", () => {
-  const expected = {
-    url: "testUrl",
-    method: "GET",
-    userAgent: "testAgent",
-    requestId: "testRequestId",
-    operationId: "testOperationId",
-    production: true,
-    account: "testAccount",
-    workspace: "testWorkspace",
-    traceId: "testTraceId",
-    type: "route",
-  };
-
   const mockContext = {
     request: {
       url: "testUrl",
       method: "GET",
       headers: { "user-agent": "testAgent" },
+      ip: "::1",
     },
     vtex: {
       requestId: "testRequestId",
@@ -28,6 +16,24 @@ describe("getBindingsForRoute", () => {
       account: "testAccount",
       workspace: "testWorkspace",
       tracer: { traceId: "testTraceId" },
+    },
+  };
+
+  const expected = {
+    req: {
+      url: "testUrl",
+      method: "GET",
+      headers: { "user-agent": "testAgent" },
+      remoteAddress: "::1",
+    },
+    vtex: {
+      requestId: "testRequestId",
+      operationId: "testOperationId",
+      production: true,
+      account: "testAccount",
+      workspace: "testWorkspace",
+      traceId: "testTraceId",
+      type: "route",
     },
   };
   it("should return correct object", () => {
@@ -49,7 +55,10 @@ describe("getBindingsForRoute", () => {
 
     expect(result).toEqual({
       ...expected,
-      traceId: undefined,
+      vtex: {
+        ...expected.vtex,
+        traceId: undefined,
+      },
     });
   });
 });

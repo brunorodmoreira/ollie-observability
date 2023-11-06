@@ -18,34 +18,36 @@ export function fullLoggingMiddlewareFactory() {
     try {
       await next();
     } catch (err) {
-      const message = "Request finished with error";
-
-      if (err instanceof Error) {
-        logger.error({
-          ...bindings,
-          message,
-          error: err.message,
-          stack: err.stack,
-        });
-      } else {
-        logger.error({
-          ...bindings,
-          message,
-          error: "Unknown error",
-        });
-      }
+      logger.error({
+        ...bindings,
+        error:
+          err instanceof Error
+            ? {
+                type: err.name,
+                message: err.message,
+                stack: err.stack,
+              }
+            : {
+                type: "UnknownError",
+                message: "Unknown error",
+                stack: JSON.stringify(err),
+              },
+      });
 
       throw err;
     }
 
     const endTime = process.hrtime.bigint();
 
-    const duration = Number(endTime - startTime) / 1e6;
+    const responseTime = Number(endTime - startTime) / 1e6;
 
     logger.info({
       ...bindings,
-      duration,
-      message: "Request finished successfully",
+      req: {
+        ...bindings.req,
+        statusCode: ctx.status,
+      },
+      responseTime,
     });
   };
 }
