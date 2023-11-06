@@ -1,0 +1,10 @@
+{
+  "name": "generate-load",
+  "version": "1.0.0",
+  "description": "Just a script to generate load to the examples",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
