@@ -47,7 +47,7 @@ declare global {
 }
 
 // Export a service that defines route handlers and client options.
-const service = new Service({
+export default new Service({
   clients,
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
