@@ -26,7 +26,7 @@ export function interceptNativeLogger(
 
     logger[logLevel](data);
 
-    nativeLog.apply(ctx.vtex.logger, [`vtex ${message}`, logLevel]);
+    nativeLog.apply(ctx.vtex.logger, [message, logLevel]);
   };
 
   ollieConsole.warn(

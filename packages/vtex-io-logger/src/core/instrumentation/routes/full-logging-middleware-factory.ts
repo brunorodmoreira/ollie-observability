@@ -43,9 +43,9 @@ export function fullLoggingMiddlewareFactory() {
 
     logger.info({
       ...bindings,
-      req: {
-        ...bindings.req,
+      res: {
         statusCode: ctx.status,
+        headers: ctx.response.headers,
       },
       responseTime,
     });

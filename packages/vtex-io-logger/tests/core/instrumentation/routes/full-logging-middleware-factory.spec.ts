@@ -26,6 +26,10 @@ describe("fullLoggingMiddlewareFactory", () => {
         workspace: "testWorkspace",
         tracer: { traceId: "testTraceId" },
       },
+      response: {
+        headers: { "cache-control": "testCacheControl" },
+      },
+      status: 200,
     } as any;
   });
 
