@@ -8,13 +8,13 @@
     "@types/express-serve-static-core": "4.16.0"
   },
   "dependencies": {
-    "@ollie/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/sunstone/commit/96e97183/@ollie/vtex-io-logger",
+    "@ollie/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie/commit/b27a3a4b/@ollie/vtex-io-logger",
     "co-body": "^6.0.0"
   },
   "devDependencies": {
     "@types/co-body": "^0.0.3",
     "@types/node": "^12.0.0",
-    "@vtex/api": "6.45.24",
+    "@vtex/api": "6.46.0",
     "tsconfig": "*",
     "typescript": "3.9.7"
   }
