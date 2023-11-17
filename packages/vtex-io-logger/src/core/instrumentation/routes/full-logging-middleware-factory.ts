@@ -2,6 +2,10 @@ import type { ServiceContext } from "@vtex/api";
 import type { ParamsContextWithOllie } from "../../../types/ollie";
 import { getBindingsForRoute } from "./get-binding-for-route";
 
+function getResponseTime(startTime: bigint) {
+  return Math.floor(Number(process.hrtime.bigint() - startTime) / 1e6);
+}
+
 export function fullLoggingMiddlewareFactory() {
   return async function fullLoggingMiddleware(
     ctx: ServiceContext<any, any, ParamsContextWithOllie>,
@@ -31,21 +35,21 @@ export function fullLoggingMiddlewareFactory() {
                 type: "UnknownError",
                 stack: JSON.stringify(err),
               },
+        res: {
+          statusCode: ctx.status,
+        },
+        responseTime: getResponseTime(startTime),
       });
 
       throw err;
     }
-
-    const endTime = process.hrtime.bigint();
-
-    const responseTime = Math.floor(Number(endTime - startTime) / 1e6);
 
     const params = {
       ...bindings,
       res: {
         statusCode: ctx.status,
       },
-      responseTime,
+      responseTime: getResponseTime(startTime),
     };
 
     if (ctx.status >= 400) {
