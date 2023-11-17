@@ -15,11 +15,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Setup pnpm 7
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-
       - name: Setup Node.js 18.x
         uses: actions/setup-node@v2
         with:
@@ -32,7 +27,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
+          publish: yarn publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
