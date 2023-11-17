@@ -1,0 +1,37 @@
+{
+  "name": "@ollie-dev/vtex-io-logger",
+  "version": "0.0.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && node ./esbuild.config.js && yarn build:types",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist && cp -r src/types dist/",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.7",
+    "@vtex/api": "^6.46.0",
+    "esbuild": "^0.19.5",
+    "esbuild-node-externals": "^1.9.0",
+    "eslint": "^8.52.0",
+    "eslint-config-custom": "*",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "tsconfig": "*",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "@vtex/api": "^6.46.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
