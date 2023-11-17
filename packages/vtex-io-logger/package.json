@@ -1,6 +1,16 @@
 {
   "name": "@ollie-dev/vtex-io-logger",
   "version": "0.1.0",
+  "keywords": [
+    "vtex",
+    "vtex-io",
+    "logger",
+    "observability"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunorodmoreira/ollie-observability/tree/main/packages/vtex-io-logger"
+  },
   "license": "MIT",
   "sideEffects": false,
   "main": "./dist/index.js",
