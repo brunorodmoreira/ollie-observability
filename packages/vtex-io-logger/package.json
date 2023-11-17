@@ -1,12 +1,17 @@
 {
   "name": "@ollie-dev/vtex-io-logger",
   "version": "0.1.0",
+  "description": "A logger for VTEX IO apps",
   "keywords": [
     "vtex",
     "vtex-io",
     "logger",
     "observability"
   ],
+  "homepage": "https://github.com/brunorodmoreira/ollie-observability/tree/main/packages/vtex-io-logger#README.md",
+  "bugs": {
+    "url": "https://github.com/brunorodmoreira/ollie-observability/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/brunorodmoreira/ollie-observability/tree/main/packages/vtex-io-logger"
