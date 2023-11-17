@@ -22,7 +22,7 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "search-sunstone-dev-pfod3lwksc4ch7iizua7iqdj5y.us-east-1.es.amazonaws.com",
+        "host": "your-logger-service-url.com",
         "path": "*"
       }
     },
