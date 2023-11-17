@@ -6,7 +6,7 @@ This repository contains a collection of observability packages designed to work
 
 This monorepo contains the following packages:
 
-- `@ollie/vtex-io-logger`: A logger middleware for VTEX IO apps, allowing you to connect external loggers to your app.
+- `@ollie-dev/vtex-io-logger`: A logger middleware for VTEX IO apps, allowing you to connect external loggers to your app.
 
 ## Getting Started
 

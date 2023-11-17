@@ -9,9 +9,9 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@ollie/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie/vtex-io-logger":
+"@ollie-dev/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie-dev/vtex-io-logger":
   version "0.0.0"
-  resolved "https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie/vtex-io-logger#ac4c2a6f1cee0fe9086939f06667b53780edc239"
+  resolved "https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie-dev/vtex-io-logger#ac4c2a6f1cee0fe9086939f06667b53780edc239"
 
 "@types/accepts@*":
   version "1.3.5"

@@ -8,7 +8,7 @@
     "@types/express-serve-static-core": "4.16.0"
   },
   "dependencies": {
-    "@ollie/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie/vtex-io-logger",
+    "@ollie-dev/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie/commit/0e67cf9f/@ollie-dev/vtex-io-logger",
     "co-body": "^6.0.0",
     "pino": "^8.16.1",
     "pino-opensearch": "^1.1.0"

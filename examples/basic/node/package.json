@@ -8,7 +8,7 @@
     "@types/express-serve-static-core": "4.16.0"
   },
   "dependencies": {
-    "@ollie/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie/commit/b27a3a4b/@ollie/vtex-io-logger",
+    "@ollie-dev/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie/commit/b27a3a4b/@ollie-dev/vtex-io-logger",
     "co-body": "^6.0.0"
   },
   "devDependencies": {

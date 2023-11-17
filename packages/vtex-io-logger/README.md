@@ -1,6 +1,6 @@
-# @ollie/vtex-io-logger
+# @ollie-dev/vtex-io-logger
 
-`@ollie/vtex-io-logger` is an npm package designed to enhance the logging and observability capabilities for VTEX IO developers and clients. It offers a streamlined and flexible way to integrate advanced logging functionalities into your VTEX IO applications.
+`@ollie-dev/vtex-io-logger` is an npm package designed to enhance the logging and observability capabilities for VTEX IO developers and clients. It offers a streamlined and flexible way to integrate advanced logging functionalities into your VTEX IO applications.
 
 ## Features
 
@@ -12,7 +12,7 @@
 ## Installation
 
 ```bash
-npm install @ollie/vtex-io-logger
+npm install @ollie-dev/vtex-io-logger
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ npm install @ollie/vtex-io-logger
 Simply import and use withFullLogger to add logging to your service:
 
 ```typescript
-import { withFullLogger } from "@ollie/vtex-io-logger";
+import { withFullLogger } from "@ollie-dev/vtex-io-logger";
 
 // Your service setup
 const service = new Service({
@@ -37,7 +37,7 @@ export default withFullLogger(service);
 Enhance TypeScript support by declaring the global context:
 
 ```typescript
-import { ContextWithOllie } from "@ollie/vtex-io-logger";
+import { ContextWithOllie } from "@ollie-dev/vtex-io-logger";
 
 declare global {
   type Context = ContextWithOllie<Clients, State>;

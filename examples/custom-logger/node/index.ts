@@ -1,7 +1,7 @@
 import type { ClientsConfig, RecorderState } from "@vtex/api";
 import { LRUCache, Service, method } from "@vtex/api";
 
-import { ContextWithOllie, withFullLogger } from "@ollie/vtex-io-logger";
+import { ContextWithOllie, withFullLogger } from "@ollie-dev/vtex-io-logger";
 import { Clients } from "./clients";
 import logger from "./lib/logger";
 import { status } from "./middlewares/status";
