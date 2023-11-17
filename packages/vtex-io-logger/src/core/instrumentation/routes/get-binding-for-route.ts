@@ -1,7 +1,7 @@
 import type { ServiceContext } from "@vtex/api";
 
 export function getBindingsForRoute(ctx: ServiceContext) {
-  const { url, method, headers, ip: remoteAddress } = ctx.request;
+  const { url, method, ip: remoteAddress } = ctx.request;
 
   const { requestId, operationId, production, account, workspace, tracer } =
     ctx.vtex;
@@ -10,7 +10,6 @@ export function getBindingsForRoute(ctx: ServiceContext) {
     req: {
       url,
       method,
-      headers,
       remoteAddress,
     },
     vtex: {

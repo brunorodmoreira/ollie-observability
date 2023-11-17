@@ -29,7 +29,6 @@ export function fullLoggingMiddlewareFactory() {
               }
             : {
                 type: "UnknownError",
-                message: "Unknown error",
                 stack: JSON.stringify(err),
               },
       });
@@ -39,15 +38,22 @@ export function fullLoggingMiddlewareFactory() {
 
     const endTime = process.hrtime.bigint();
 
-    const responseTime = Number(endTime - startTime) / 1e6;
+    const responseTime = Math.floor(Number(endTime - startTime) / 1e6);
 
-    logger.info({
+    const params = {
       ...bindings,
       res: {
         statusCode: ctx.status,
-        headers: ctx.response.headers,
       },
       responseTime,
-    });
+    };
+
+    if (ctx.status >= 400) {
+      logger.error(params);
+
+      return;
+    }
+
+    logger.info(params);
   };
 }

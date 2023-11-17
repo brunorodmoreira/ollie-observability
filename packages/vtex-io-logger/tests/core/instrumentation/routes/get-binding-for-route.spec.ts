@@ -23,7 +23,6 @@ describe("getBindingsForRoute", () => {
     req: {
       url: "testUrl",
       method: "GET",
-      headers: { "user-agent": "testAgent" },
       remoteAddress: "::1",
     },
     vtex: {
