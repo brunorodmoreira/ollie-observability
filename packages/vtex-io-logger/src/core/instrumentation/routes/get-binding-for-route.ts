@@ -18,7 +18,7 @@ export function getBindingsForRoute(ctx: ServiceContext) {
       production,
       account,
       workspace,
-      traceId: tracer && tracer.traceId ? tracer.traceId : undefined,
+      traceId: tracer.traceId,
       appId: process.env.VTEX_APP_ID ?? '',
       appVersion: process.env.VTEX_APP_VERSION ?? '',
       appName: process.env.VTEX_APP_NAME ?? '',
