@@ -21,8 +21,6 @@ describe("getBindingsForRoute", () => {
     process: {
       env: {
         appId: process.env.VTEX_APP_ID ?? '',
-        appVersion: process.env.VTEX_APP_VERSION ?? '',
-        appName: process.env.VTEX_APP_NAME ?? '',
       }
     }
   };
@@ -42,8 +40,6 @@ describe("getBindingsForRoute", () => {
       traceId: "testTraceId",
       type: "route",
       appId: process.env.VTEX_APP_ID ?? '',
-      appVersion: process.env.VTEX_APP_VERSION ?? '',
-      appName: process.env.VTEX_APP_NAME ?? '',
     },
   };
   it("should return correct object", () => {
