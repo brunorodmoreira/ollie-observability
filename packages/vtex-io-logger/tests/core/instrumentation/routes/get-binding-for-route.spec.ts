@@ -16,6 +16,9 @@ describe("getBindingsForRoute", () => {
       account: "testAccount",
       workspace: "testWorkspace",
       tracer: { traceId: "testTraceId" },
+      appId: "testAppId",
+      appVersion: "0.0.1",
+      appName: "testAppName",
     },
   };
 
@@ -33,6 +36,9 @@ describe("getBindingsForRoute", () => {
       workspace: "testWorkspace",
       traceId: "testTraceId",
       type: "route",
+      appId: "testAppId",
+      appVersion: "0.0.1",
+      appName: "testAppName",
     },
   };
   it("should return correct object", () => {
