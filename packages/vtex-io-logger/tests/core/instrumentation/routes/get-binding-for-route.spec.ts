@@ -16,10 +16,15 @@ describe("getBindingsForRoute", () => {
       account: "testAccount",
       workspace: "testWorkspace",
       tracer: { traceId: "testTraceId" },
-      appId: "testAppId",
-      appVersion: "0.0.1",
-      appName: "testAppName",
+      type: "route",
     },
+    process: {
+      env: {
+        appId: process.env.VTEX_APP_ID ?? '',
+        appVersion: process.env.VTEX_APP_VERSION ?? '',
+        appName: process.env.VTEX_APP_NAME ?? '',
+      }
+    }
   };
 
   const expected = {
@@ -36,9 +41,9 @@ describe("getBindingsForRoute", () => {
       workspace: "testWorkspace",
       traceId: "testTraceId",
       type: "route",
-      appId: "testAppId",
-      appVersion: "0.0.1",
-      appName: "testAppName",
+      appId: process.env.VTEX_APP_ID ?? '',
+      appVersion: process.env.VTEX_APP_VERSION ?? '',
+      appName: process.env.VTEX_APP_NAME ?? '',
     },
   };
   it("should return correct object", () => {
