@@ -11,7 +11,7 @@ export function withFullLogger<
 >(service: Service<T, U, V>, options: Ollie.Options = {}) {
   const { config } = service;
 
-  let routes = injectEnhancedLoggerToRoutes(config.routes, options);
+  let routes = injectEnhancedLoggerToRoutes(config.routes, config.events, options);
 
   routes = instrumentRoutes(routes);
 
@@ -20,3 +20,4 @@ export function withFullLogger<
     routes,
   });
 }
+
