@@ -20,8 +20,9 @@ export type ContextWithOllie<
 > = ServiceContext<ClientsT, StateT, ParamsContextWithOllie>;
 
 export type EventContextWithOllie<
+  ClientsT extends ClientsWithOllie = ClientsWithOllie,
   StateT extends RecorderState = RecorderState
-> = EventContext<ClientsWithOllie, StateT>;
+> = EventContext<ClientsT, StateT>;
 
 export declare namespace Ollie {
   interface Logger {
