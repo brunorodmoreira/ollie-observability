@@ -23,15 +23,15 @@ export function injectEnhancedLoggerToRoutes(
   }
 
   // Assuming 'events' is your original object
-  const enhancedEvents: Record<string, EventHandler<any, any> | EventHandler<any, any>[]> = {};
+  const enhancedEvents: typeof events = {};
 
   if (events) {
-    const injectionLoggerMiddleware = enhancedLoggerInjectionEventsMiddlewareFactory(options);
+    const injectionLoggerEventsMiddleware = enhancedLoggerInjectionEventsMiddlewareFactory(options);
 
     for (const [name, handler] of Object.entries(events)) {
       const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
-        ? [injectionLoggerMiddleware, ...handler]
-        : [injectionLoggerMiddleware, handler as EventHandler<any, any>];
+        ? [injectionLoggerEventsMiddleware, ...handler]
+        : [injectionLoggerEventsMiddleware, handler ];
 
       enhancedEvents[name] = middlewareArray;
     }

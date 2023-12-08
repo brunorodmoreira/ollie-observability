@@ -31,14 +31,17 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
   interceptVtexLogger,
 }: Ollie.Options) {
   const middleware = function enhancedLoggerInjectionEventsMiddleware(
-    ctx: EventContext<any, any>,
+    ctx: EventContext<any>,
     next: () => Promise<any>
   ) {
-    ctx.clients.ollie = {
-      logger: logger || ctx.vtex.logger,
+
+    ctx.clients = {
+      ollie: {
+        logger: logger || ctx.vtex.logger,
+      }
     };
 
-    if (logger && ctx.clients.ollie.logger !== ctx.vtex.logger && interceptVtexLogger) {
+    if (logger && logger !== ctx.vtex.logger && interceptVtexLogger) {
       interceptNativeLogger(ctx.vtex, { logger });
     }
 
