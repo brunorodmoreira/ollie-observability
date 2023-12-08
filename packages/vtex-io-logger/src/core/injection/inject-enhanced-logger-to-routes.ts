@@ -4,8 +4,8 @@ import { enhancedLoggerInjectionEventsMiddlewareFactory, enhancedLoggerInjection
 
 export function injectEnhancedLoggerToRoutes(
   routes: ServiceConfig<any, any, any>["routes"],
-  events: ServiceConfig<any, any, any>["events"],
-  options: Ollie.Options
+  options: Ollie.Options,
+  events?: ServiceConfig<any, any, any>["events"],
 ) {
   if (!routes) {
     return routes;
