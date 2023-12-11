@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment -- necessary for mocks */
 import type { ServiceContext } from "@vtex/api";
-import { fullLoggingMiddlewareFactory } from "../../../../src/core/instrumentation/routes/full-logging-middleware-factory";
+import { fullLoggingRouteMiddlewareFactory } from "../../../../src/core/instrumentation/routes/full-logging-middleware-factory";
 import type { ParamsContextWithOllie } from "../../../../src/types/ollie";
 
-describe("fullLoggingMiddlewareFactory", () => {
+describe("fullLoggingRouteMiddlewareFactory", () => {
   let ctx: ServiceContext<any, any, ParamsContextWithOllie>;
   let next: jest.Mock;
   let logger: { info: jest.Mock; error: jest.Mock };
@@ -34,7 +34,7 @@ describe("fullLoggingMiddlewareFactory", () => {
   });
 
   it("should log info when request finishes successfully", async () => {
-    const middleware = fullLoggingMiddlewareFactory();
+    const middleware = fullLoggingRouteMiddlewareFactory();
     await middleware(ctx, next);
 
     expect(logger.info).toHaveBeenCalled();
@@ -42,7 +42,7 @@ describe("fullLoggingMiddlewareFactory", () => {
   });
 
   it("should log error when request finishes with error", async () => {
-    const middleware = fullLoggingMiddlewareFactory();
+    const middleware = fullLoggingRouteMiddlewareFactory();
     next.mockImplementationOnce(() => {
       throw new Error("Test error");
     });
@@ -58,7 +58,7 @@ describe("fullLoggingMiddlewareFactory", () => {
   });
 
   it("should rethrow the error", async () => {
-    const middleware = fullLoggingMiddlewareFactory();
+    const middleware = fullLoggingRouteMiddlewareFactory();
     const error = new Error("Test error");
     next.mockImplementationOnce(() => {
       throw error;

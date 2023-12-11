@@ -1,6 +1,6 @@
 import type { ServiceConfig } from "@vtex/api";
 import { addItemToPosition } from "../../../utils/arrays";
-import { fullLoggingMiddlewareFactory } from "./full-logging-middleware-factory";
+import { fullLoggingEventMiddlewareFactory } from "./full-logging-middleware-factory";
 
 export function instrumentEvents(events: ServiceConfig["events"]) {
   if (!events) {
@@ -16,7 +16,7 @@ export function instrumentEvents(events: ServiceConfig["events"]) {
       );
     }
 
-    const fullLoggingMiddleware = fullLoggingMiddlewareFactory();
+    const fullLoggingMiddleware = fullLoggingEventMiddlewareFactory();
 
     enhancedRoutes[name] = addItemToPosition(
       handlers,
