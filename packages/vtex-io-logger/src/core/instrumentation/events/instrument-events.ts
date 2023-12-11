@@ -14,7 +14,7 @@ export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie
     for (const [name, handlers] of Object.entries(events)) {
       if (!Array.isArray(handlers)) {
         throw new Error(
-          `Route ${name} is not an array. This could be to not be inject the logger.`
+          `Event ${name} is not an array. This could be to not be inject the logger.`
         );
       }
 
@@ -29,7 +29,5 @@ export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie
     logger?.info({ message: error })
   }
 
-
-  logger?.info({ message: `enhancedEvents ${JSON.stringify(enhancedEvents)}.` })
   return enhancedEvents;
 }
