@@ -27,14 +27,14 @@ export function fullLoggingMiddlewareFactory() {
         error:
           err instanceof Error
             ? {
-                type: err.name,
-                message: err.message,
-                stack: err.stack,
-              }
+              type: err.name,
+              message: err.message,
+              stack: err.stack,
+            }
             : {
-                type: "UnknownError",
-                stack: JSON.stringify(err),
-              },
+              type: "UnknownError",
+              stack: JSON.stringify(err),
+            },
         res: {
           statusCode: ctx.status,
         },

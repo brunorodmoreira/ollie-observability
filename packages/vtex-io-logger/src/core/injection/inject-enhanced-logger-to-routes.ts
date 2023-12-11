@@ -31,13 +31,39 @@ export function injectEnhancedLoggerToRoutes(
     for (const [name, handler] of Object.entries(events)) {
       const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
         ? [injectionLoggerEventsMiddleware, ...handler]
-        : [injectionLoggerEventsMiddleware, handler ];
+        : [injectionLoggerEventsMiddleware, handler];
 
       enhancedEvents[name] = middlewareArray;
     }
   }
 
   return enhancedRoutes;
+}
+
+export function injectEnhancedLoggerToEvents(
+  events: ServiceConfig<any, any, any>["events"],
+  options: Ollie.Options,
+
+) {
+
+  if (!events) {
+    return events;
+  }
+  // Assuming 'events' is your original object
+  const enhancedEvents: typeof events = {};
+
+
+  const injectionLoggerEventsMiddleware = enhancedLoggerInjectionEventsMiddlewareFactory(options);
+
+  for (const [name, handler] of Object.entries(events)) {
+    const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
+      ? [injectionLoggerEventsMiddleware, ...handler]
+      : [injectionLoggerEventsMiddleware, handler];
+
+    enhancedEvents[name] = middlewareArray;
+  }
+
+  return enhancedEvents;
 }
 
 
