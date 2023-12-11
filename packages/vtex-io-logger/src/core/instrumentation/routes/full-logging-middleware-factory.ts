@@ -69,7 +69,7 @@ export function fullLoggingEventMiddlewareFactory() {
     next: () => Promise<any>
   ) {
     const {
-      ollie: { logger },
+      logger,
     } = ctx.vtex;
 
     const bindings = getBindingsForEvents(ctx);

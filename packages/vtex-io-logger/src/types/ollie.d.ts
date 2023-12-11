@@ -24,9 +24,7 @@ export type ContextWithOllie<
 export type EventContextWithOllie<
   ClientsT extends IOClients = IOClients,
   StateT extends RecorderState = RecorderState
-> = EventContext<ClientsT, StateT> & {
-  vtex: ClientsWithOllie;
-};
+> = EventContext<ClientsT, StateT>
 
 export declare namespace Ollie {
   interface Logger {
