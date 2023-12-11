@@ -46,6 +46,6 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
   };
 
   middleware.__loggerInjectionMiddleware = true;
-  logger.info({ message: "middleware", middleware })
+  logger?.info({ message: "middleware", middleware })
   return middleware;
 }
