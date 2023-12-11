@@ -11,7 +11,6 @@ export function withFullLogger<
   V extends ParamsContext
 >(service: Service<T, U, V>, options: Ollie.Options = {}) {
   const { config } = service;
-
   let routes = injectEnhancedLoggerToRoutes(config.routes, options);
   let events = injectEnhancedLoggerToEvents(config.events, options);
 
