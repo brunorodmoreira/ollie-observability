@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument -- mock */
-import { getBindingsForRoute } from "../../../../src/core/instrumentation/routes/get-binding";
+import { getBindingsForRoute } from "../../../../src/core/instrumentation/get-binding";
 
 describe("getBindingsForRoute", () => {
   const mockContext = {

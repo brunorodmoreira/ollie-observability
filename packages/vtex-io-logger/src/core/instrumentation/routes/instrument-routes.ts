@@ -1,7 +1,7 @@
 import type { RouteHandler, ServiceConfig } from "@vtex/api";
 import { ollieConsole } from "../../../services/ollie-console";
 import { addItemToPosition } from "../../../utils/arrays";
-import { fullLoggingRouteMiddlewareFactory } from "./full-logging-middleware-factory";
+import { fullLoggingMiddlewareFactory } from "./full-logging-middleware-factory";
 
 export function instrumentRoutes(routes: ServiceConfig["routes"]) {
   if (!routes) {
@@ -34,7 +34,7 @@ export function instrumentRoutes(routes: ServiceConfig["routes"]) {
       );
     }
 
-    const fullLoggingMiddleware = fullLoggingRouteMiddlewareFactory();
+    const fullLoggingMiddleware = fullLoggingMiddlewareFactory();
 
     enhancedRoutes[name] = addItemToPosition(
       handlers,

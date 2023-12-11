@@ -1,7 +1,7 @@
 import type { ServiceConfig } from "@vtex/api";
 import type { Ollie } from "../../../types/ollie";
 import { addItemToPosition } from "../../../utils/arrays";
-import { fullLoggingEventMiddlewareFactory } from "./full-logging-middleware-factory";
+import { fullLoggingMiddlewareFactory } from "./full-logging-middleware-factory";
 
 export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie.Logger) {
   if (!events) {
@@ -18,7 +18,7 @@ export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie
         );
       }
 
-      const fullLoggingMiddleware = fullLoggingEventMiddlewareFactory(logger);
+      const fullLoggingMiddleware = fullLoggingMiddlewareFactory(logger);
       enhancedEvents[name] = addItemToPosition(
         handlers,
         fullLoggingMiddleware,
