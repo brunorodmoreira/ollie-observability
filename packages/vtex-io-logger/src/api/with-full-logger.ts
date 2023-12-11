@@ -12,11 +12,12 @@ export function withFullLogger<
 >(service: Service<T, U, V>, options: Ollie.Options = {}) {
   const { config } = service;
   let routes = injectEnhancedLoggerToRoutes(config.routes, options);
+  options.logger?.info({ message: "init injectEnhancedLoggerToEvents" })
   let events = injectEnhancedLoggerToEvents(config.events, options);
-
+  options.logger?.info({ message: "finish injectEnhancedLoggerToEvents", events })
   routes = instrumentRoutes(routes);
   events = instrumentEvents(events);
-
+  options.logger?.info({ message: "finish instrumentEvents", events })
   return new Service({
     ...config,
     routes,

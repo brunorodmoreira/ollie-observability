@@ -45,6 +45,8 @@ export function injectEnhancedLoggerToEvents(
     enhancedEvents[name] = middlewareArray;
   }
 
+  options.logger?.info({ message: "finish enhancedEvents", enhancedEvents })
+
   return enhancedEvents;
 }
 

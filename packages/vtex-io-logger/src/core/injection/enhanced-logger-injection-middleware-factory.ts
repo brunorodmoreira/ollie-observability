@@ -34,8 +34,9 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
     ctx: EventContextWithOllie<any>,
     next: () => Promise<any>
   ) {
-
+    logger?.info({ message: "finish interceptVtexLogger", interceptNativeLogger })
     if (logger && logger !== ctx.vtex.logger && interceptVtexLogger) {
+
       interceptNativeLogger(ctx.vtex, { logger });
     }
 

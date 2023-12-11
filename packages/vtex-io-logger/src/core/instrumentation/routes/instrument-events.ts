@@ -1,8 +1,9 @@
 import type { ServiceConfig } from "@vtex/api";
+import type { Ollie } from "../../../types/ollie";
 import { addItemToPosition } from "../../../utils/arrays";
 import { fullLoggingEventMiddlewareFactory } from "./full-logging-middleware-factory";
 
-export function instrumentEvents(events: ServiceConfig["events"]) {
+export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie.Logger) {
   if (!events) {
     return events;
   }
@@ -17,7 +18,7 @@ export function instrumentEvents(events: ServiceConfig["events"]) {
     }
 
     const fullLoggingMiddleware = fullLoggingEventMiddlewareFactory();
-
+    logger?.info({ message: "finish fullLoggingMiddleware", fullLoggingMiddleware })
     enhancedRoutes[name] = addItemToPosition(
       handlers,
       fullLoggingMiddleware,
