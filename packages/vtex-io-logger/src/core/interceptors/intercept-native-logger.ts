@@ -25,7 +25,6 @@ export function interceptNativeLogger(
     const data = formatData(message, logLevel, ctx);
 
     logger[logLevel](data);
-    logger.info({ message: "ctx.logger.log ", data })
     nativeLog.apply(ctx.logger, [message, logLevel]);
   };
 

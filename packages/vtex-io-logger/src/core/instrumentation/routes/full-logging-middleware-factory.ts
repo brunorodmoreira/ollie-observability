@@ -1,5 +1,5 @@
 import type { ServiceContext } from "@vtex/api";
-import type { EventContextWithOllie, ParamsContextWithOllie } from "../../../types/ollie";
+import type { EventContextWithOllie, Ollie, ParamsContextWithOllie } from "../../../types/ollie";
 import { getBindingsForEvents, getBindingsForRoute } from "./get-binding";
 
 function getResponseTime(startTime: bigint) {
@@ -63,14 +63,11 @@ export function fullLoggingRouteMiddlewareFactory() {
 }
 
 
-export function fullLoggingEventMiddlewareFactory() {
+export function fullLoggingEventMiddlewareFactory(logger?: Ollie.Logger) {
   return async function fullLoggingMiddleware(
     ctx: EventContextWithOllie<any>,
     next: () => Promise<any>
   ) {
-    const {
-      logger,
-    } = ctx.vtex;
 
     const bindings = getBindingsForEvents(ctx);
 
@@ -79,7 +76,7 @@ export function fullLoggingEventMiddlewareFactory() {
     try {
       await next();
     } catch (err) {
-      logger.error({
+      logger?.error({
         ...bindings,
         error:
           err instanceof Error
@@ -105,6 +102,6 @@ export function fullLoggingEventMiddlewareFactory() {
       responseTime: getResponseTime(startTime),
     };
 
-    logger.info(params);
+    logger?.info(params);
   };
 }

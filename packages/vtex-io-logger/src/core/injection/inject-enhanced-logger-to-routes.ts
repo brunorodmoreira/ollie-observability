@@ -43,7 +43,6 @@ export function injectEnhancedLoggerToEvents(
         ? [injectionLoggerEventsMiddleware, ...handler]
         : [injectionLoggerEventsMiddleware, handler];
 
-      options.logger?.info({ message: "middlewareArray", middlewareArray })
       if (middlewareArray.length === 0) {
         enhancedEvents[name] = events[name];
       } else {
@@ -53,11 +52,8 @@ export function injectEnhancedLoggerToEvents(
     }
 
   } catch (error) {
-    options.logger?.info({ message: error })
+    options.logger?.error({ message: error })
   }
-
-
-  options.logger?.info({ message: "finish enhancedEvents", enhancedEvents })
 
   return enhancedEvents;
 }
