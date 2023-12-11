@@ -51,19 +51,14 @@ export function injectEnhancedLoggerToEvents(
   // Assuming 'events' is your original object
   const enhancedEvents: typeof events = {};
 
-  try {
-    const injectionLoggerEventsMiddleware = enhancedLoggerInjectionEventsMiddlewareFactory(options);
+  const injectionLoggerEventsMiddleware = enhancedLoggerInjectionEventsMiddlewareFactory(options);
 
-    for (const [name, handler] of Object.entries(events)) {
-      const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
-        ? [injectionLoggerEventsMiddleware, ...handler]
-        : [injectionLoggerEventsMiddleware, handler];
+  for (const [name, handler] of Object.entries(events)) {
+    const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
+      ? [injectionLoggerEventsMiddleware, ...handler]
+      : [injectionLoggerEventsMiddleware, handler];
 
-      enhancedEvents[name] = middlewareArray;
-    }
-
-  } catch (error) {
-    console.log(error)
+    enhancedEvents[name] = middlewareArray;
   }
 
   return enhancedEvents;
