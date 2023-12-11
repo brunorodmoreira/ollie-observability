@@ -22,7 +22,7 @@ export type ContextWithOllie<
 > = ServiceContext<ClientsT, StateT, ParamsContextWithOllie>;
 
 export type EventContextWithOllie<
-  ClientsT extends IOClients = IOClients,
+  ClientsT extends ClientsWithOllie = IOClients,
   StateT extends RecorderState = RecorderState
 > = EventContext<ClientsT, StateT>
 
