@@ -8,12 +8,6 @@ export interface ParamsContextWithOllie extends ParamsContext {
   };
 }
 
-export interface ClientsWithOllie extends IOClients {
-  ollie: {
-    logger: Ollie.Logger;
-  };
-}
-
 export type ContextType = 'route' | 'event' | 'graphql' | 'client'
 
 export type ContextWithOllie<
@@ -22,7 +16,7 @@ export type ContextWithOllie<
 > = ServiceContext<ClientsT, StateT, ParamsContextWithOllie>;
 
 export type EventContextWithOllie<
-  ClientsT extends ClientsWithOllie = IOClients,
+  ClientsT extends IOClients = IOClients,
   StateT extends RecorderState = RecorderState
 > = EventContext<ClientsT, StateT>
 

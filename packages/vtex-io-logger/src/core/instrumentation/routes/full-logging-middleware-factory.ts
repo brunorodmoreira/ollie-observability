@@ -1,5 +1,5 @@
 import type { ServiceContext } from "@vtex/api";
-import type { ClientsWithOllie, EventContextWithOllie, ParamsContextWithOllie } from "../../../types/ollie";
+import type { EventContextWithOllie, ParamsContextWithOllie } from "../../../types/ollie";
 import { getBindingsForEvents, getBindingsForRoute } from "./get-binding";
 
 function getResponseTime(startTime: bigint) {
@@ -65,12 +65,12 @@ export function fullLoggingRouteMiddlewareFactory() {
 
 export function fullLoggingEventMiddlewareFactory() {
   return async function fullLoggingMiddleware(
-    ctx: EventContextWithOllie<ClientsWithOllie>,
+    ctx: EventContextWithOllie<any>,
     next: () => Promise<any>
   ) {
     const {
-      ollie: { logger },
-    } = ctx.clients;
+      logger,
+    } = ctx.vtex;
 
     const bindings = getBindingsForEvents(ctx);
 
