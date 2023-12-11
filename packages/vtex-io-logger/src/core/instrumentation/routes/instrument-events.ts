@@ -8,24 +8,30 @@ export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie
     return events;
   }
 
-  const enhancedRoutes: typeof events = {};
+  const enhancedEvents: typeof events = {};
 
-  for (const [name, handlers] of Object.entries(events)) {
-    if (!Array.isArray(handlers)) {
-      logger?.info({ message: `Route ${name} is not an array. This could be to not be inject the logger.` })
-      throw new Error(
-        `Route ${name} is not an array. This could be to not be inject the logger.`
+  try {
+    for (const [name, handlers] of Object.entries(events)) {
+      if (!Array.isArray(handlers)) {
+        logger?.info({ message: `Route ${name} is not an array. This could be to not be inject the logger.` })
+        throw new Error(
+          `Route ${name} is not an array. This could be to not be inject the logger.`
+        );
+      }
+
+      const fullLoggingMiddleware = fullLoggingEventMiddlewareFactory();
+      logger?.info({ message: "finish fullLoggingMiddleware", fullLoggingMiddleware })
+      enhancedEvents[name] = addItemToPosition(
+        handlers,
+        fullLoggingMiddleware,
+        0
       );
     }
-
-    const fullLoggingMiddleware = fullLoggingEventMiddlewareFactory();
-    logger?.info({ message: "finish fullLoggingMiddleware", fullLoggingMiddleware })
-    enhancedRoutes[name] = addItemToPosition(
-      handlers,
-      fullLoggingMiddleware,
-      0
-    );
+  } catch (error) {
+    logger?.info({ message: error })
   }
 
-  return enhancedRoutes;
+
+  logger?.info({ message: `enhancedEvents ${JSON.stringify(enhancedEvents)}.` })
+  return enhancedEvents;
 }
