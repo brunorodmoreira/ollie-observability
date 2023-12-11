@@ -16,7 +16,7 @@ export function withFullLogger<
   let events = injectEnhancedLoggerToEvents(config.events, options);
   options.logger?.info({ message: "finish injectEnhancedLoggerToEvents", events })
   routes = instrumentRoutes(routes);
-  events = instrumentEvents(events);
+  events = instrumentEvents(events, options.logger);
   options.logger?.info({ message: "finish instrumentEvents", events })
   return new Service({
     ...config,

@@ -12,6 +12,7 @@ export function instrumentEvents(events: ServiceConfig["events"], logger?: Ollie
 
   for (const [name, handlers] of Object.entries(events)) {
     if (!Array.isArray(handlers)) {
+      logger?.info({ message: `Route ${name} is not an array. This could be to not be inject the logger.` })
       throw new Error(
         `Route ${name} is not an array. This could be to not be inject the logger.`
       );
