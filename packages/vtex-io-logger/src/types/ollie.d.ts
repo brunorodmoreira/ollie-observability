@@ -8,8 +8,6 @@ export interface ParamsContextWithOllie extends ParamsContext {
   };
 }
 
-export type ContextType = 'route' | 'event' | 'graphql' | 'client'
-
 export type ContextWithOllie<
   ClientsT extends IOClients = IOClients,
   StateT extends RecorderState = RecorderState

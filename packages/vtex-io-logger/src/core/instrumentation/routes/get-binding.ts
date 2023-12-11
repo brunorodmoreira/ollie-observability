@@ -26,12 +26,18 @@ export function getBindingsForRoute(ctx: ServiceContext) {
 
 export function getBindingsForEvents(ctx: EventContext<any>) {
   const eventInfo = ctx.vtex.eventInfo;
+  const body = ctx.body as unknown
 
   const { requestId, operationId, production, account, workspace, tracer } =
     ctx.vtex;
 
   return {
-    eventInfo,
+    eventInfo: {
+      sender: eventInfo?.sender,
+      subject: eventInfo?.subject,
+      key: eventInfo?.key,
+      body,
+    },
     vtex: {
       requestId,
       operationId,

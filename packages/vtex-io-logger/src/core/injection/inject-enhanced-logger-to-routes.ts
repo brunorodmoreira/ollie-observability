@@ -1,6 +1,6 @@
-import type { EventHandler, ServiceConfig } from "@vtex/api";
+import type { ServiceConfig } from "@vtex/api";
 import type { Ollie } from "../../types/ollie";
-import { enhancedLoggerInjectionEventsMiddlewareFactory, enhancedLoggerInjectionMiddlewareFactory } from "./enhanced-logger-injection-middleware-factory";
+import { enhancedLoggerInjectionMiddlewareFactory } from "./enhanced-logger-injection-middleware-factory";
 
 export function injectEnhancedLoggerToRoutes(
   routes: ServiceConfig<any, any, any>["routes"],
@@ -10,7 +10,6 @@ export function injectEnhancedLoggerToRoutes(
     return routes;
   }
 
-  // Assuming the middleware factory returns a compatible middleware
   const injectionLoggerMiddleware = enhancedLoggerInjectionMiddlewareFactory(options);
 
   const enhancedRoutes: typeof routes = {};
@@ -23,39 +22,3 @@ export function injectEnhancedLoggerToRoutes(
 
   return enhancedRoutes;
 }
-
-export function injectEnhancedLoggerToEvents(
-  events: ServiceConfig<any, any, any>["events"],
-  options: Ollie.Options,
-
-) {
-  if (!events) {
-    return events;
-  }
-  // Assuming 'events' is your original object
-  const enhancedEvents: typeof events = {};
-  try {
-    const injectionLoggerEventsMiddleware = enhancedLoggerInjectionEventsMiddlewareFactory(options);
-
-    for (const [name, handler] of Object.entries(events)) {
-
-      const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
-        ? [injectionLoggerEventsMiddleware, ...handler]
-        : [injectionLoggerEventsMiddleware, handler];
-
-      if (middlewareArray.length === 0) {
-        enhancedEvents[name] = events[name];
-      } else {
-        enhancedEvents[name] = middlewareArray;
-      }
-
-    }
-
-  } catch (error) {
-    options.logger?.error({ message: error })
-  }
-
-  return enhancedEvents;
-}
-
-
