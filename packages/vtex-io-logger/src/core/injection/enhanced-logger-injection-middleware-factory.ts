@@ -30,13 +30,15 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
   logger,
   interceptVtexLogger,
 }: Ollie.Options) {
+
+
   const middleware = function enhancedLoggerInjectionEventsMiddleware(
     ctx: EventContextWithOllie<any>,
     next: () => Promise<any>
   ) {
-    logger?.info({ message: "finish interceptVtexLogger", interceptNativeLogger })
+    logger?.info({ message: "if interceptVtexLogger" })
     if (logger && logger !== ctx.vtex.logger && interceptVtexLogger) {
-
+      logger.info({ message: "entrou interceptVtexLogger" })
       interceptNativeLogger(ctx.vtex, { logger });
     }
 
@@ -44,6 +46,6 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
   };
 
   middleware.__loggerInjectionMiddleware = true;
-
+  logger.info({ message: "middleware", middleware })
   return middleware;
 }
