@@ -21,11 +21,6 @@ describe("getBindingsForRoute", () => {
       tracer: { traceId: "testTraceId" },
       type: "route",
     },
-    process: {
-      env: {
-        appId: process.env.VTEX_APP_ID,
-      }
-    }
   };
 
   const expected = {
