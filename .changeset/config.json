@@ -6,6 +6,6 @@
   "fixed": [],
   "linked": [],
   "access": "public",
-  "updateInternalDependencies": "minor",
+  "updateInternalDependencies": "patch",
   "ignore": []
 }
