@@ -3,7 +3,7 @@ import { getBindingsForRoute } from "../../../../src/core/instrumentation/routes
 
 describe("getBindingsForRoute", () => {
 
-  process.env.VTEX_APP_ID = 'vendor,app-name@0.0.1';
+  process.env.VTEX_APP_ID = 'vendor.app-name@0.0.1';
 
   const mockContext = {
     request: {
