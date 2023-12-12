@@ -25,7 +25,6 @@ describe("fullLoggingMiddlewareFactory", () => {
         account: "testAccount",
         workspace: "testWorkspace",
         tracer: { traceId: "testTraceId" },
-        appId: "testAppId",
       },
       response: {
         headers: { "cache-control": "testCacheControl" },
