@@ -37,7 +37,7 @@ describe("getBindingsForRoute", () => {
       workspace: "testWorkspace",
       traceId: "testTraceId",
       type: "route",
-      appId: process.env.VTEX_APP_ID,
+      appId: "vendor.app-name@0.0.1",
     },
   };
   it("should return correct object", () => {
