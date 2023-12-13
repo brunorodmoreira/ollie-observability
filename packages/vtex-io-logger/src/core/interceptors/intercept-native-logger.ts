@@ -11,6 +11,7 @@ function formatData(data: unknown, level: string, ctx: ServiceContext) {
     requestId: ctx.vtex.requestId,
     operationId: ctx.vtex.operationId,
     production: ctx.vtex.production,
+    appId: process.env.VTEX_APP_ID,
     __VTEX_IO_LOG: true,
   };
 }
