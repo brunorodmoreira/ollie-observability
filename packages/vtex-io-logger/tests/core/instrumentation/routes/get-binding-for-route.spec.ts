@@ -2,6 +2,9 @@
 import { getBindingsForRoute } from "../../../../src/core/instrumentation/get-binding";
 
 describe("getBindingsForRoute", () => {
+
+  process.env.VTEX_APP_ID = 'vendor.app-name@0.0.1';
+
   const mockContext = {
     request: {
       url: "testUrl",
@@ -16,6 +19,7 @@ describe("getBindingsForRoute", () => {
       account: "testAccount",
       workspace: "testWorkspace",
       tracer: { traceId: "testTraceId" },
+      type: "route",
     },
   };
 
@@ -33,6 +37,7 @@ describe("getBindingsForRoute", () => {
       workspace: "testWorkspace",
       traceId: "testTraceId",
       type: "route",
+      appId: "vendor.app-name@0.0.1",
     },
   };
   it("should return correct object", () => {
