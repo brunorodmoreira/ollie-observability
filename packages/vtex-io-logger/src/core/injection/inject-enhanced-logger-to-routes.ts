@@ -10,7 +10,7 @@ export function injectEnhancedLoggerToRoutes(
 
   const enhancedRoutes: typeof routes = {};
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- routes is not null
   for (const [name, handler] of Object.entries(routes!)) {
     enhancedRoutes[name] = Array.isArray(handler)
       ? [injectionLoggerMiddleware, ...handler]

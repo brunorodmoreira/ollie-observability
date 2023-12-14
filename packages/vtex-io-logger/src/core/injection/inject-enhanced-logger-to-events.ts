@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-non-null-assertion -- events is not null */
 import type { EventHandler, ServiceConfig } from "@vtex/api";
 import type { Ollie } from "../../types/ollie";
 import { enhancedLoggerInjectionEventsMiddlewareFactory } from "./enhanced-logger-injection-middleware-factory";
