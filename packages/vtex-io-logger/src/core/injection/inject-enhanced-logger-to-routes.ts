@@ -6,15 +6,12 @@ export function injectEnhancedLoggerToRoutes(
   routes: ServiceConfig<any, any, any>["routes"],
   options: Ollie.Options
 ) {
-  if (!routes) {
-    return routes;
-  }
-
   const injectionLoggerMiddleware = enhancedLoggerInjectionMiddlewareFactory(options);
 
   const enhancedRoutes: typeof routes = {};
 
-  for (const [name, handler] of Object.entries(routes)) {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  for (const [name, handler] of Object.entries(routes!)) {
     enhancedRoutes[name] = Array.isArray(handler)
       ? [injectionLoggerMiddleware, ...handler]
       : [injectionLoggerMiddleware, handler];
