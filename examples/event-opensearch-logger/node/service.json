@@ -10,5 +10,20 @@
       "path": "/_v/status/:code",
       "public": true
     }
+  },
+  "events": {
+    "allStates": {
+      "sender": "vtex.orders-broadcast",
+      "topics": [
+        "order-status-updated"
+      ]
+    },
+    "someStates": {
+      "sender": "vtex.orders-broadcast",
+      "topics": [
+        "cancel",
+        "order-created"
+      ]
+    }
   }
 }

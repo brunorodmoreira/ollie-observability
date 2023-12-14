@@ -1,9 +1,13 @@
+import type {
+  ContextWithOllie,
+  EventContextWithOllie,
+} from '@ollie-dev/vtex-io-logger';
+import { withFullLogger } from '@ollie-dev/vtex-io-logger';
 import type { ClientsConfig, RecorderState } from "@vtex/api";
 import { LRUCache, Service, method } from "@vtex/api";
-
-import { ContextWithOllie, withFullLogger } from "@ollie-dev/vtex-io-logger";
 import { Clients } from "./clients";
 import logger from "./lib/logger";
+import { allStates } from "./middlewares/allStates";
 import { status } from "./middlewares/status";
 import { validate } from "./middlewares/validate";
 
@@ -44,11 +48,26 @@ declare global {
   interface State extends RecorderState {
     code: number;
   }
+
+  interface StatusChangeContext extends EventContextWithOllie<Clients> {
+    body: {
+      domain: string
+      orderId: string
+      currentState: string
+      lastState: string
+      currentChangeDate: string
+      lastChangeDate: string
+    }
+  }
 }
 
 // Export a service that defines route handlers and client options.
 const service = new Service({
   clients,
+  events: {
+    allStates,
+    someStates: [allStates],
+  },
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
     status: method({
