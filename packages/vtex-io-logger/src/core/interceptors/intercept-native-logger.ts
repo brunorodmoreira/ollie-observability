@@ -6,11 +6,11 @@ function formatData(data: unknown, level: string, ctx: IOContext) {
   return {
     data,
     level,
-    account: ctx.vtex.account,
-    workspace: ctx.vtex.workspace,
-    requestId: ctx.vtex.requestId,
-    operationId: ctx.vtex.operationId,
-    production: ctx.vtex.production,
+    account: ctx.account,
+    workspace: ctx.workspace,
+    requestId: ctx.requestId,
+    operationId: ctx.operationId,
+    production: ctx.production,
     appId: process.env.VTEX_APP_ID,
     __VTEX_IO_LOG: true,
   };
