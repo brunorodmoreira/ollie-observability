@@ -25,20 +25,12 @@ describe("injectEnhancedLoggerToRoutes", () => {
     );
   });
 
-  it("returns the same routes when no routes are provided", () => {
-    const result = injectEnhancedLoggerToRoutes(undefined, {
-      logger: mockLogger,
-    });
-
-    expect(result).toBe(undefined);
-  });
-
   it("returns enhanced routes when routes are provided and the handler is an array", () => {
     const routes = { testRoute: [jest.fn(), jest.fn()] };
 
     const result = injectEnhancedLoggerToRoutes(routes, { logger: mockLogger });
 
-    const testRouteHandlers = result?.testRoute as RouteHandler[];
+    const testRouteHandlers = result.testRoute as RouteHandler[];
     expect(testRouteHandlers[0]).toBe(mockLoggerMiddleware);
   });
 
@@ -47,7 +39,7 @@ describe("injectEnhancedLoggerToRoutes", () => {
 
     const result = injectEnhancedLoggerToRoutes(routes, { logger: mockLogger });
 
-    const testRouteHandlers = result?.testRoute as RouteHandler[];
+    const testRouteHandlers = result.testRoute as RouteHandler[];
     expect(testRouteHandlers[0]).toBe(mockLoggerMiddleware);
   });
 });

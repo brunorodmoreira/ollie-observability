@@ -1,28 +1,24 @@
-import type { ServiceContext } from "@vtex/api";
-import type { ParamsContextWithOllie } from "../../../types/ollie";
-import { getBindingsForRoute } from "../get-binding";
+import type { EventContextWithOllie, Ollie } from "../../../types/ollie";
+import { getBindingsForEvents } from "../get-binding";
 
 function getResponseTime(startTime: bigint) {
   return Math.floor(Number(process.hrtime.bigint() - startTime) / 1e6);
 }
 
-export function fullLoggingMiddlewareFactory() {
+export function fullLoggingMiddlewareFactory(logger?: Ollie.Logger) {
   return async function fullLoggingMiddleware(
-    ctx: ServiceContext<any, any, ParamsContextWithOllie>,
+    ctx: EventContextWithOllie<any>,
     next: () => Promise<any>
   ) {
-    const {
-      ollie: { logger },
-    } = ctx;
 
-    const bindings = getBindingsForRoute(ctx);
+    const bindings = getBindingsForEvents(ctx);
 
     const startTime = process.hrtime.bigint();
 
     try {
       await next();
     } catch (err) {
-      logger.error({
+      logger?.error({
         ...bindings,
         error:
           err instanceof Error
@@ -35,9 +31,7 @@ export function fullLoggingMiddlewareFactory() {
               type: "UnknownError",
               stack: JSON.stringify(err),
             },
-        res: {
-          statusCode: ctx.status,
-        },
+
         responseTime: getResponseTime(startTime),
       });
 
@@ -46,18 +40,10 @@ export function fullLoggingMiddlewareFactory() {
 
     const params = {
       ...bindings,
-      res: {
-        statusCode: ctx.status,
-      },
+
       responseTime: getResponseTime(startTime),
     };
 
-    if (ctx.status >= 400) {
-      logger.error(params);
-
-      return;
-    }
-
-    logger.info(params);
+    logger?.info(params);
   };
 }

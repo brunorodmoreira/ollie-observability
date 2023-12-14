@@ -34,7 +34,7 @@ describe("interceptNativeLogger", () => {
     const message = "test";
     const logLevel = LogLevel.Info;
 
-    interceptNativeLogger(mockContext, { logger });
+    interceptNativeLogger(mockContext.vtex, { logger });
 
     mockContext.vtex.logger.log(message, logLevel);
 
@@ -47,7 +47,7 @@ describe("interceptNativeLogger", () => {
     const message = "test";
     const logLevel = LogLevel.Info;
 
-    interceptNativeLogger(mockContext, { logger });
+    interceptNativeLogger(mockContext.vtex, { logger });
 
     mockContext.vtex.logger.log(message, logLevel);
 
