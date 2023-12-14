@@ -10,8 +10,7 @@ export function injectEnhancedLoggerToRoutes(
     return routes;
   }
 
-  const injectionLoggerMiddleware =
-    enhancedLoggerInjectionMiddlewareFactory(options);
+  const injectionLoggerMiddleware = enhancedLoggerInjectionMiddlewareFactory(options);
 
   const enhancedRoutes: typeof routes = {};
 

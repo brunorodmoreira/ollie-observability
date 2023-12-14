@@ -1,8 +1,8 @@
-import type { LogLevel, ServiceContext } from "@vtex/api";
+import type { IOContext, LogLevel } from "@vtex/api";
 import { ollieConsole } from "../../services/ollie-console";
 import type { Ollie } from "../../types/ollie";
 
-function formatData(data: unknown, level: string, ctx: ServiceContext) {
+function formatData(data: unknown, level: string, ctx: IOContext) {
   return {
     data,
     level,
@@ -19,17 +19,16 @@ function formatData(data: unknown, level: string, ctx: ServiceContext) {
 }
 
 export function interceptNativeLogger(
-  ctx: ServiceContext,
+  ctx: IOContext,
   { logger }: { logger: Ollie.Logger }
 ) {
-  const nativeLog = ctx.vtex.logger.log;
+  const nativeLog = ctx.logger.log;
 
-  ctx.vtex.logger.log = (message: any, logLevel: LogLevel) => {
+  ctx.logger.log = (message: any, logLevel: LogLevel) => {
     const data = formatData(message, logLevel, ctx);
 
     logger[logLevel](data);
-
-    nativeLog.apply(ctx.vtex.logger, [message, logLevel]);
+    nativeLog.apply(ctx.logger, [message, logLevel]);
   };
 
   ollieConsole.warn(
