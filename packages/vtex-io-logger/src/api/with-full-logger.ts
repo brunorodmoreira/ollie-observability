@@ -26,7 +26,8 @@ export function withFullLogger<
   }
 
   if (config.graphql?.resolvers) {
-    graphql = injectEnhancedLoggerToGraphql(config.graphql.resolvers, options);
+
+    graphql = { resolvers: injectEnhancedLoggerToGraphql(config.graphql.resolvers, options) };
   }
 
   return new Service({
