@@ -1,4 +1,4 @@
-import type { IOClients, ParamsContext, RecorderState } from "@vtex/api";
+import type { GraphQLOptions, IOClients, ParamsContext, RecorderState } from "@vtex/api";
 import { Service } from "@vtex/api";
 import { injectEnhancedLoggerToEvents } from "../core/injection/inject-enhanced-logger-to-events";
 import { injectEnhancedLoggerToGraphql } from "../core/injection/inject-enhanced-logger-to-graphql";
@@ -13,7 +13,7 @@ export function withFullLogger<
   V extends ParamsContext
 >(service: Service<T, U, V>, options: Ollie.Options = {}) {
   const { config } = service;
-  let routes, events, resolvers;
+  let routes, events;
 
   if (config.routes) {
     routes = injectEnhancedLoggerToRoutes(config.routes, options);
@@ -25,16 +25,17 @@ export function withFullLogger<
     events = instrumentEvents(events, options.logger);
   }
 
-  if (config.graphql?.resolvers) {
+  let graphql: GraphQLOptions<T, U, V> | undefined;
 
-    resolvers = injectEnhancedLoggerToGraphql(config.graphql.resolvers, options);
+  if (config.graphql?.resolvers) {
+    graphql = injectEnhancedLoggerToGraphql(config.graphql, options);
   }
 
   return new Service({
     ...config,
     routes: routes ?? config.routes ?? {},
     events: events ?? config.events ?? {},
-    graphql: { resolvers: resolvers ?? config.graphql.resolvers, ...config.graphql },
+    graphql: graphql ?? config.graphql ?? undefined,
   });
 }
 
