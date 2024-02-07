@@ -12,7 +12,7 @@ export function withFullLogger<
   V extends ParamsContext
 >(service: Service<T, U, V>, options: Ollie.Options = {}) {
   const { config } = service;
-  let routes, events
+  let routes, events, graphql;
 
   if (config.routes) {
     routes = injectEnhancedLoggerToRoutes(config.routes, options);
@@ -23,10 +23,17 @@ export function withFullLogger<
     events = injectEnhancedLoggerToEvents(config.events, options);
     events = instrumentEvents(events, options.logger);
   }
+
+  if (config.graphql) {
+    graphql = injectEnhancedLoggerToEvents(config.graphql, options);
+    graphql = instrumentEvents(graphql, options.logger);
+  }
+
   return new Service({
     ...config,
     routes: routes ?? config.routes ?? {},
     events: events ?? config.events ?? {},
+    graphql: graphql ?? config.graphql ?? {},
   });
 }
 
