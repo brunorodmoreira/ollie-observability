@@ -25,8 +25,8 @@ export function withFullLogger<
     events = instrumentEvents(events, options.logger);
   }
 
-  if (config.graphql) {
-    graphql = injectEnhancedLoggerToGraphql(config.graphql, options);
+  if (config.graphql?.resolvers) {
+    graphql = injectEnhancedLoggerToGraphql(config.graphql.resolvers, options);
   }
 
   return new Service({
