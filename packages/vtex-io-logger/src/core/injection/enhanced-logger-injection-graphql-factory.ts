@@ -2,7 +2,7 @@ import type { ServiceContext } from "@vtex/api";
 import type { Ollie } from "../../types/ollie";
 import { interceptNativeLogger } from "../interceptors/intercept-native-logger";
 
-export function enhancedLoggerInjectionGraphqlFactory(resolver: any, {
+export function enhancedLoggerInjectionGraphqlFactory(resolver: unknown, {
     logger,
     interceptVtexLogger,
 }: Ollie.Options) {

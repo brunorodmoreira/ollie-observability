@@ -1,6 +1,7 @@
 import type { IOClients, ParamsContext, RecorderState } from "@vtex/api";
 import { Service } from "@vtex/api";
 import { injectEnhancedLoggerToEvents } from "../core/injection/inject-enhanced-logger-to-events";
+import { injectEnhancedLoggerToGraphql } from "../core/injection/inject-enhanced-logger-to-graphql";
 import { injectEnhancedLoggerToRoutes } from "../core/injection/inject-enhanced-logger-to-routes";
 import { instrumentEvents } from "../core/instrumentation/events/instrument-events";
 import { instrumentRoutes } from "../core/instrumentation/routes/instrument-routes";
@@ -25,8 +26,7 @@ export function withFullLogger<
   }
 
   if (config.graphql) {
-    graphql = injectEnhancedLoggerToEvents(config.graphql, options);
-    graphql = instrumentEvents(graphql, options.logger);
+    graphql = injectEnhancedLoggerToGraphql(config.graphql, options);
   }
 
   return new Service({
