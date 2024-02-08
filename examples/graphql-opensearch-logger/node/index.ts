@@ -1,10 +1,10 @@
-import type { ClientsConfig } from '@vtex/api';
+import type { ClientsConfig, IOClients, ParamsContext, RecorderState, ServiceContext } from '@vtex/api';
 import { LRUCache, Service, method } from '@vtex/api';
 import { prop } from 'ramda';
 
-import logger from "./lib/logger";
+//import logger from "./lib/logger";
 
-import { ContextWithOllie, withFullLogger } from "@ollie-dev/vtex-io-logger";
+//import { ContextWithOllie, withFullLogger } from "@ollie-dev/vtex-io-logger";
 import { Clients } from './clients';
 import { status } from "./middlewares/status";
 import { validate } from "./middlewares/validate";
@@ -48,7 +48,8 @@ const clients: ClientsConfig<Clients> = {
 
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
-  type Context = ContextWithOllie<Clients>
+  //type Context = ContextWithOllie<Clients>
+  type Context = ServiceContext<Clients>
 
 }
 
@@ -83,9 +84,66 @@ const service = new Service({
 
 
 //console.log(service.config.routes?.status)
-//console.log(service.config.graphql?.resolvers?.Query)
-console.log(service.config.graphql?.resolvers?.Query)
+console.log(Array.isArray(service.config.graphql?.resolvers?.Query) ? service.config.graphql?.resolvers?.Query[0] : null);
+/*console.log(service.config.graphql?.resolvers?.Query)
 console.log(service.config.graphql?.resolvers?.Mutation)
 console.log(service.config.graphql)
 console.log(service.config.graphql?.resolvers)
-export default withFullLogger(service, { logger });
+*/
+
+function enhancedLoggerInjectionGraphqlFactory(resolver: any) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const oldResolver = resolver;
+  const newResolver = function enhancedLoggerInjectionMiddleware(
+    _: unknown,
+    args: unknown,
+    ctx: ServiceContext<any, any, ParamsContext>
+  ) {
+
+    console.log("executou nova funçao")
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+    return oldResolver(_, args, ctx);
+  };
+
+  newResolver.__loggerInjectionMiddleware = true;
+
+  return newResolver;
+}
+
+export function withFullLogger<
+  T extends IOClients,
+  U extends RecorderState,
+  V extends ParamsContext
+>(service: Service<T, U, V>) {
+  const { config } = service;
+  const graphql = config.graphql!;
+
+  const enhancedQueries: typeof graphql.resolvers.Query = {};
+  // const enhancedMutations: typeof graphql.resolvers.Mutation = {};
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+  for (const [name, handler] of Object.entries(graphql.resolvers.Query)) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    enhancedQueries[name] = enhancedLoggerInjectionGraphqlFactory(handler)
+
+  }
+
+  const newGraphql = { ...graphql, resolvers: { ...graphql.resolvers, Query: enhancedQueries } }
+  console.log(config.graphql)
+  console.log(newGraphql)
+  return new Service({
+    ...config,
+    graphql: newGraphql ?? config.graphql ?? undefined,
+  });
+}
+const queryResolvers = service.config.graphql?.resolvers?.Query;
+if (queryResolvers) {
+  for (const [name, handler] of Object.entries(queryResolvers)) {
+    console.log(name, handler)
+  }
+}
+
+console.log(new Date())
+
+//const newService = withFullLogger(service, { logger });
+export default withFullLogger(service);

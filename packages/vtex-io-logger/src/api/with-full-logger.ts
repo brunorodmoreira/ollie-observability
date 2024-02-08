@@ -27,7 +27,8 @@ export function withFullLogger<
 
   let graphql: GraphQLOptions<T, U, V> | undefined;
 
-  if (config.graphql?.resolvers) {
+  if (config.graphql) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     graphql = injectEnhancedLoggerToGraphql(config.graphql, options);
   }
 
