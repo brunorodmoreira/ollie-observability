@@ -1,5 +1,5 @@
 import pino from "pino";
-// @ts-ignore
+// @ts-expect-error
 import pinoOpenSearch from "pino-opensearch";
 
 const streamToOpenSearch = pinoOpenSearch({

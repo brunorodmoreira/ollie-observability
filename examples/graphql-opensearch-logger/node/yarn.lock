@@ -12,9 +12,9 @@
     ms "^2.1.3"
     secure-json-parse "^2.4.0"
 
-"@ollie-dev/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/161aceaf/@ollie-dev/vtex-io-logger":
+"@ollie-dev/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/235824fd/@ollie-dev/vtex-io-logger":
   version "0.2.0"
-  resolved "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/161aceaf/@ollie-dev/vtex-io-logger#ce64959dcefa9b6f51cc2e38adb68b4c6e01c0c4"
+  resolved "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/235824fd/@ollie-dev/vtex-io-logger#3b7aba2767d21dbb852561487a95b76bce42419d"
 
 "@types/accepts@*":
   version "1.3.5"

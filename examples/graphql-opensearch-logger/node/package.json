@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "ramda": "^0.26.1",
-    "@ollie-dev/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/161aceaf/@ollie-dev/vtex-io-logger",
+    "@ollie-dev/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/235824fd/@ollie-dev/vtex-io-logger",
     "pino": "^8.16.1",
     "pino-opensearch": "^1.1.0"
   },
