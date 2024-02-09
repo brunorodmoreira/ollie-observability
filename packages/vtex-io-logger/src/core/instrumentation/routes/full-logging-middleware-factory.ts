@@ -1,6 +1,6 @@
 import type { ServiceContext } from "@vtex/api";
 import type { ParamsContextWithOllie } from "../../../types/ollie";
-import { getBindingsForRoute } from "./get-binding-for-route";
+import { getBindingsForRoute } from "../get-binding";
 
 function getResponseTime(startTime: bigint) {
   return Math.floor(Number(process.hrtime.bigint() - startTime) / 1e6);
@@ -27,14 +27,14 @@ export function fullLoggingMiddlewareFactory() {
         error:
           err instanceof Error
             ? {
-                type: err.name,
-                message: err.message,
-                stack: err.stack,
-              }
+              type: err.name,
+              message: err.message,
+              stack: err.stack,
+            }
             : {
-                type: "UnknownError",
-                stack: JSON.stringify(err),
-              },
+              type: "UnknownError",
+              stack: JSON.stringify(err),
+            },
         res: {
           statusCode: ctx.status,
         },

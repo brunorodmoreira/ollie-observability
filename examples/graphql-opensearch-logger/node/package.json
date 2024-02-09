@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "ramda": "^0.26.1",
+    "@ollie-dev/vtex-io-logger": "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/235824fd/@ollie-dev/vtex-io-logger",
+    "pino": "^8.16.1",
+    "pino-opensearch": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "@types/ramda": "types/npm-ramda#dist",
+    "@vtex/api": "6.46.1",
+    "@vtex/tsconfig": "^0.5.6",
+    "typescript": "3.9.7"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit && tslint -c tslint.json './**/*.ts'"
+  },
+  "version": "0.3.0"
+}
