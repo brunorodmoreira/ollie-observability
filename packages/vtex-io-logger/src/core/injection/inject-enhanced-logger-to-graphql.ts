@@ -1,24 +1,36 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { Ollie } from "../../types/ollie";
+
+
+
+
+import type { GraphQLOptions, ServiceContext } from "@vtex/api";
+import type { Ollie, ParamsContextWithOllie } from "../../types/ollie";
 import { enhancedLoggerInjectionGraphqlFactory } from "./enhanced-logger-injection-graphql-factory";
 
 export function injectEnhancedLoggerToGraphql(
-    graphql: any,
+    graphql: GraphQLOptions<any, any, any>,
     options: Ollie.Options
 ) {
-    const enhancedQueries: typeof graphql.resolvers.Query = {};
-    const enhancedMutations: typeof graphql.resolvers.Mutation = {};
 
-    for (const [name, handler] of Object.entries(graphql.resolvers.Query)) {
-        enhancedQueries[name] = enhancedLoggerInjectionGraphqlFactory(handler, options)
+    let newGraphql = graphql;
+    /* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- necessary */
+    if (graphql.resolvers.Query) {
+        const enhancedQueries: Record<string, any> = {};
+        for (const [name, handler] of Object.entries(graphql.resolvers.Query)) {
+            enhancedQueries[name] = enhancedLoggerInjectionGraphqlFactory(handler as (_: unknown, args: unknown, ctx: ServiceContext<any, any, ParamsContextWithOllie>) => unknown, options)
+        }
+
+        newGraphql = { ...graphql, resolvers: { ...graphql.resolvers, Query: enhancedQueries } }
+    }
+    /* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- necessary */
+    if (graphql.resolvers.Mutation) {
+        const enhancedMutations: Record<string, any> = {};
+
+        for (const [name, handler] of Object.entries(graphql.resolvers.Mutation)) {
+
+            enhancedMutations[name] = enhancedLoggerInjectionGraphqlFactory(handler as (_: unknown, args: unknown, ctx: ServiceContext<any, any, ParamsContextWithOllie>) => unknown, options)
+        }
+        newGraphql = { ...graphql, resolvers: { ...graphql.resolvers, Mutation: enhancedMutations } }
     }
 
-    for (const [name, handler] of Object.entries(graphql.resolvers.Mutation)) {
-        enhancedMutations[name] = enhancedLoggerInjectionGraphqlFactory(handler, options)
-    }
-
-    return { ...graphql, resolvers: { ...graphql.resolvers, Query: enhancedQueries, Mutation: enhancedMutations } }
+    return newGraphql
 }

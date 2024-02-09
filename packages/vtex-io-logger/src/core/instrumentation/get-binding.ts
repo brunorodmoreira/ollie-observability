@@ -50,3 +50,27 @@ export function getBindingsForEvents(ctx: EventContext<any>) {
     },
   };
 }
+
+export function getBindingsForGraphql(type: string, resolverName: string, functionName: string, ctx: ServiceContext<any>) {
+
+  const { requestId, operationId, production, account, workspace, tracer } =
+    ctx.vtex;
+
+  return {
+    req: {
+      resolverName,
+      type,
+      functionName
+    },
+    vtex: {
+      requestId,
+      operationId,
+      production,
+      account,
+      workspace,
+      appId: process.env.VTEX_APP_ID,
+      traceId: tracer.traceId,
+      type: "graphql",
+    },
+  };
+}

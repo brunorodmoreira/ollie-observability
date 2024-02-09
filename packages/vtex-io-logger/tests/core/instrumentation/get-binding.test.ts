@@ -1,6 +1,9 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-empty-function -- mock */
+/* eslint-disable @typescript-eslint/no-unsafe-argument -- mock */
 import { Logger, Span } from "@vtex/api";
-import { getBindingsForEvents } from "../../../src/core/instrumentation/get-binding";
+import { getBindingsForEvents, getBindingsForGraphql } from "../../../src/core/instrumentation/get-binding";
+
+;
 
 describe("getBindingsForEvents", () => {
     it("returns the correct bindings for events", () => {
@@ -160,6 +163,49 @@ describe("getBindingsForEvents", () => {
             sender: "",
             subject: ""
         });
+
+        expect(result).toEqual(expectedBindings);
+    });
+})
+
+describe("getBindingsForGraphql", () => {
+    it("returns the correct bindings for graphql", () => {
+        const ctx = {
+            vtex: {
+                requestId: "requestId",
+                operationId: "operationId",
+                production: true,
+                account: "account",
+                workspace: "workspace",
+                tracer: {
+                    traceId: "traceId",
+                },
+            },
+        };
+
+        const type = "query";
+        const resolverName = "MyResolver";
+        const functionName = "myFunction";
+
+        const expectedBindings = {
+            req: {
+                resolverName: "MyResolver",
+                type: "query",
+                functionName: "myFunction",
+            },
+            vtex: {
+                requestId: "requestId",
+                operationId: "operationId",
+                production: true,
+                account: "account",
+                workspace: "workspace",
+                appId: process.env.VTEX_APP_ID,
+                traceId: "traceId",
+                type: "graphql",
+            },
+        };
+
+        const result = getBindingsForGraphql(type, resolverName, functionName, ctx as any);
 
         expect(result).toEqual(expectedBindings);
     });

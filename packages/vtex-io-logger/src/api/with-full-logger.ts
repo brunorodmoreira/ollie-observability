@@ -4,6 +4,7 @@ import { injectEnhancedLoggerToEvents } from "../core/injection/inject-enhanced-
 import { injectEnhancedLoggerToGraphql } from "../core/injection/inject-enhanced-logger-to-graphql";
 import { injectEnhancedLoggerToRoutes } from "../core/injection/inject-enhanced-logger-to-routes";
 import { instrumentEvents } from "../core/instrumentation/events/instrument-events";
+import { instrumentGraphql } from "../core/instrumentation/graphql/instrument-graphql";
 import { instrumentRoutes } from "../core/instrumentation/routes/instrument-routes";
 import type { Ollie } from "../types/ollie";
 
@@ -28,8 +29,8 @@ export function withFullLogger<
   let graphql: GraphQLOptions<T, U, V> | undefined;
 
   if (config.graphql) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     graphql = injectEnhancedLoggerToGraphql(config.graphql, options);
+    graphql = instrumentGraphql(graphql, options.logger);
   }
 
   return new Service({

@@ -2,12 +2,12 @@ import type { ServiceContext } from "@vtex/api";
 import type { Ollie, ParamsContextWithOllie } from "../../types/ollie";
 import { interceptNativeLogger } from "../interceptors/intercept-native-logger";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function enhancedLoggerInjectionGraphqlFactory(resolver: any, {
-    logger,
-    interceptVtexLogger,
-}: Ollie.Options) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export function enhancedLoggerInjectionGraphqlFactory(resolver: (_: unknown,
+    args: unknown,
+    ctx: ServiceContext<any, any, ParamsContextWithOllie>) => unknown, {
+        logger,
+        interceptVtexLogger,
+    }: Ollie.Options) {
     const oldResolver = resolver;
     const newResolver = function enhancedLoggerInjectionMiddleware(
         _: unknown,
@@ -22,7 +22,6 @@ export function enhancedLoggerInjectionGraphqlFactory(resolver: any, {
             interceptNativeLogger(ctx.vtex, { logger });
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
         return oldResolver(_, args, ctx);
     };
 

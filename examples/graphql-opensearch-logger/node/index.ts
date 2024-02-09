@@ -1,10 +1,10 @@
-import type { ClientsConfig, ServiceContext } from '@vtex/api';
+import type { ClientsConfig } from '@vtex/api';
 import { LRUCache, Service, method } from '@vtex/api';
 import { prop } from 'ramda';
 
 import logger from "./lib/logger";
 
-import { withFullLogger } from "@ollie-dev/vtex-io-logger";
+import { ContextWithOllie, withFullLogger } from "@ollie-dev/vtex-io-logger";
 import { Clients } from './clients';
 import { status } from "./middlewares/status";
 import { validate } from "./middlewares/validate";
@@ -48,8 +48,8 @@ const clients: ClientsConfig<Clients> = {
 
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
-  //type Context = ContextWithOllie<Clients>
-  type Context = ServiceContext<Clients>
+  type Context = ContextWithOllie<Clients>
+  //type Context = ServiceContext<Clients>
 
 }
 
