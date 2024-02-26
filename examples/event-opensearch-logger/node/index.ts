@@ -1,6 +1,6 @@
 import type {
   ContextWithOllie,
-  EventContextWithOllie,
+  EventContextWithOllie
 } from '@ollie-dev/vtex-io-logger';
 import { withFullLogger } from '@ollie-dev/vtex-io-logger';
 import type { ClientsConfig, RecorderState } from "@vtex/api";
