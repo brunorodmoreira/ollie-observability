@@ -1,5 +1,5 @@
 ---
-"@ollie-dev/vtex-io-logger": major
+"@ollie-dev/vtex-io-logger": minor
 ---
 
 Added event context
