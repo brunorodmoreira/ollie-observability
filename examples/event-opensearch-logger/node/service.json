@@ -24,6 +24,12 @@
         "cancel",
         "order-created"
       ]
+    },
+    "example": {
+      "sender": "vtex.events-example",
+      "keys": [
+        "send-event"
+      ]
     }
   }
 }

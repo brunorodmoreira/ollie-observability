@@ -19,9 +19,9 @@
     ms "^2.1.3"
     secure-json-parse "^2.4.0"
 
-"@ollie-dev/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/3607222e/@ollie-dev/vtex-io-logger":
+"@ollie-dev/vtex-io-logger@https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/c5d8738b/@ollie-dev/vtex-io-logger":
   version "0.2.0"
-  resolved "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/3607222e/@ollie-dev/vtex-io-logger#98ffa80785ce2a766d9ac7afd68d7c2a9513da27"
+  resolved "https://pkg.csb.dev/brunorodmoreira/ollie-observability/commit/c5d8738b/@ollie-dev/vtex-io-logger#faeef0f4de7192fb7098f61ed3d3f359d5e3ea17"
 
 "@types/accepts@*":
   version "1.3.5"
@@ -171,10 +171,10 @@
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
   integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
 
-"@vtex/api@6.46.0":
-  version "6.46.0"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.46.0.tgz#208d14b96cbc8fd5eb6bd18fbd0c8424886e6154"
-  integrity sha512-XAvJlD1FG1GynhPXiMcayunahFCL2r3ilO5MHAWKxYvB/ljyxi4+U+rVpweeaQGpxHfhKHdfPe7qNEEh2oa2lw==
+"@vtex/api@6.46.1":
+  version "6.46.1"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.46.1.tgz#55a8755ae48f5400e7f1ed1921cd547950bb7a2a"
+  integrity sha512-geoxVvyWoQpOQ70Zmx3M8SBkRoGOS/bp9Gy26M+iCue63jofVSwmFz1zf66EaHA1PKOJNRgQPFwY+oeDE1U2lQ==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
@@ -1439,7 +1439,7 @@ split2@^4.0.0:
   resolved "https://registry.yarnpkg.com/split2/-/split2-4.2.0.tgz#c9c5920904d148bab0b9f67145f245a86aadbfa4"
   integrity sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==
 
-stats-lite@vtex/node-stats-lite#dist:
+"stats-lite@github:vtex/node-stats-lite#dist":
   version "2.2.0"
   resolved "https://codeload.github.com/vtex/node-stats-lite/tar.gz/1b0d39cc41ef7aaecfd541191f877887a2044797"
   dependencies:
