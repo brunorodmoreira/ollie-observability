@@ -33,7 +33,7 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
 
 
   const middleware = function enhancedLoggerInjectionEventsMiddleware(
-    ctx: EventContextWithOllie<any>,
+    ctx: EventContextWithOllie,
     next: () => Promise<any>
   ) {
     if (logger && logger !== ctx.vtex.logger && interceptVtexLogger) {
