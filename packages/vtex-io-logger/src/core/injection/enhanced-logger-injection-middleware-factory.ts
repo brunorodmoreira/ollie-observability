@@ -1,5 +1,5 @@
 import type { ServiceContext } from "@vtex/api";
-import type { EventContextWithOllie, Ollie, ParamsContextWithOllie } from "../../types/ollie";
+import type { EventContextWithOllieLogger, Ollie, ParamsContextWithOllie } from "../../types/ollie";
 import { interceptNativeLogger } from "../interceptors/intercept-native-logger";
 
 export function enhancedLoggerInjectionMiddlewareFactory({
@@ -33,9 +33,12 @@ export function enhancedLoggerInjectionEventsMiddlewareFactory({
 
 
   const middleware = function enhancedLoggerInjectionEventsMiddleware(
-    ctx: EventContextWithOllie,
+    ctx: EventContextWithOllieLogger,
     next: () => Promise<any>
   ) {
+    ctx.ollie = {
+      logger: logger || ctx.vtex.logger,
+    };
     if (logger && logger !== ctx.vtex.logger && interceptVtexLogger) {
       interceptNativeLogger(ctx.vtex, { logger });
     }

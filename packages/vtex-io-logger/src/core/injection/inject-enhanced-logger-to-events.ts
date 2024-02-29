@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment -- class */
 /* eslint-disable @typescript-eslint/no-non-null-assertion -- events is not null */
 import type { EventHandler, ServiceConfig } from "@vtex/api";
-import type { Ollie } from "../../types/ollie";
+import type { EventContextWithOllie, Ollie } from "../../types/ollie";
 import { enhancedLoggerInjectionEventsMiddlewareFactory } from "./enhanced-logger-injection-middleware-factory";
 
 export function injectEnhancedLoggerToEvents(
@@ -15,8 +16,8 @@ export function injectEnhancedLoggerToEvents(
     for (const [name, handler] of Object.entries(events!)) {
 
       const middlewareArray: EventHandler<any, any>[] = Array.isArray(handler)
-        ? [injectionLoggerEventsMiddleware, ...handler]
-        : [injectionLoggerEventsMiddleware, handler];
+        ? [injectionLoggerEventsMiddleware, ...(handler as EventContextWithOllie)]
+        : [injectionLoggerEventsMiddleware, handler as EventContextWithOllie];
 
       if (middlewareArray.length === 0) {
         enhancedEvents[name] = events![name];
