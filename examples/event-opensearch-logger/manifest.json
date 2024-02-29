@@ -1,7 +1,7 @@
 {
   "name": "service-example",
   "vendor": "vtex",
-  "version": "0.3.22",
+  "version": "0.2.22",
   "title": "Service Example",
   "description": "Reference app for VTEX IO Services",
   "mustUpdateAt": "2018-01-04",
@@ -22,7 +22,7 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "search-ollieflare-milb6ca7dh6v2kpfbai45ovh5u.us-east-1.es.amazonaws.com",
+        "host": "your-logger-service-url.com",
         "path": "*"
       }
     },

@@ -22,7 +22,5 @@ export async function status(ctx: Context, next: () => Promise<any>) {
   ctx.body = data;
   ctx.set("Cache-Control", headers["cache-control"]);
 
-
-
   await next();
 }
