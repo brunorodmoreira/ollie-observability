@@ -8,6 +8,12 @@ export interface ParamsContextWithOllie extends ParamsContext {
   };
 }
 
+export interface EventContextWithOllieLogger extends EventContext<Clients> {
+  ollie: {
+    logger: Ollie.Logger;
+  };
+}
+
 export type ContextWithOllie<
   ClientsT extends IOClients = IOClients,
   StateT extends RecorderState = RecorderState
@@ -16,7 +22,7 @@ export type ContextWithOllie<
 export type EventContextWithOllie<
   ClientsT extends IOClients = IOClients,
   StateT extends RecorderState = RecorderState
-> = EventContext<ClientsT, StateT>
+> = EventContextWithOllieLogger<ClientsT, StateT>
 
 export declare namespace Ollie {
   interface Logger {

@@ -11,6 +11,7 @@ export function fullLoggingMiddlewareFactory(logger?: Ollie.Logger) {
     next: () => Promise<any>
   ) {
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- ctx always exists
     const bindings = getBindingsForEvents(ctx);
 
     const startTime = process.hrtime.bigint();

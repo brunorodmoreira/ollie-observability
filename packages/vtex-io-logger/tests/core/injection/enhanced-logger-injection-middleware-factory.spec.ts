@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment -- necessary for mocks */
-import type { EventContext, ServiceContext } from "@vtex/api";
+import type { ServiceContext } from "@vtex/api";
 import { enhancedLoggerInjectionEventsMiddlewareFactory, enhancedLoggerInjectionMiddlewareFactory } from "../../../src/core/injection/enhanced-logger-injection-middleware-factory";
-import type { Ollie, ParamsContextWithOllie } from "../../../src/types/ollie";
+import type { EventContextWithOllieLogger, Ollie, ParamsContextWithOllie } from "../../../src/types/ollie";
 
 describe("enhancedLoggerInjectionMiddlewareFactory", () => {
   let logger: Ollie.Logger;
@@ -56,7 +56,7 @@ describe("enhancedLoggerInjectionMiddlewareFactory", () => {
 
 describe("enhancedLoggerInjectionEventsMiddlewareFactory", () => {
   let logger: Ollie.Logger;
-  let ctx: EventContext<any>;
+  let ctx: EventContextWithOllieLogger;
   let next: jest.Mock;
 
   beforeEach(() => {

@@ -7,23 +7,22 @@
   "workers": 1,
   "routes": {
     "status": {
-      "path": "/_v/status/:code",
+      "path": "/_v/status/2/:code",
       "public": true
     }
   },
   "events": {
     "allStates": {
       "sender": "vtex.orders-broadcast",
-      "topics": [
-        "order-status-updated"
-      ]
+      "topics": ["order-status-updated"]
     },
     "someStates": {
       "sender": "vtex.orders-broadcast",
-      "topics": [
-        "cancel",
-        "order-created"
-      ]
+      "topics": ["cancel", "order-created"]
+    },
+    "example": {
+      "sender": "vtex.service-example",
+      "keys": ["send-event"]
     }
   }
 }

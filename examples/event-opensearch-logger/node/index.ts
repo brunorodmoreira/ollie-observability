@@ -1,11 +1,12 @@
 import type {
   ContextWithOllie,
-  EventContextWithOllie,
+  EventContextWithOllie
 } from '@ollie-dev/vtex-io-logger';
 import { withFullLogger } from '@ollie-dev/vtex-io-logger';
 import type { ClientsConfig, RecorderState } from "@vtex/api";
 import { LRUCache, Service, method } from "@vtex/api";
 import { Clients } from "./clients";
+import { example } from './events/example';
 import logger from "./lib/logger";
 import { allStates } from "./middlewares/allStates";
 import { status } from "./middlewares/status";
@@ -67,6 +68,7 @@ const service = new Service({
   events: {
     allStates,
     someStates: [allStates],
+    example,
   },
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
