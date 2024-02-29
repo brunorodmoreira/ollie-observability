@@ -8,7 +8,7 @@ export interface ParamsContextWithOllie extends ParamsContext {
   };
 }
 
-interface EventContextWithOllieLogger extends EventContext<Clients> {
+export interface EventContextWithOllieLogger extends EventContext<Clients> {
   ollie: {
     logger: Ollie.Logger;
   };
